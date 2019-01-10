@@ -20,9 +20,13 @@ public interface ReplyService {
 	public void deleteReply(int replyNo) throws Exception;
 		
 	//DELETE 대댓글 -> (주의) Update 해야 함
-	public void deleteReReply(int replyNo) throws Exception;
+	//public void deleteReReply(int replyNo) throws Exception;
 	
 	//SELECT LIST
 	public Map<String , Object> listReply(Search search) throws Exception;
+	
+	//SELECT LIST MY REPLY 
+	public Map<String , Object> listMyReply(Search search, String writerId) throws Exception;
+		
 		
 }

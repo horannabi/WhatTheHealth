@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.wthealth.common.Search;
-import com.wthealth.domain.Live;
+import com.wthealth.domain.Socket;
 import com.wthealth.service.socket.SocketDao;
 
 @Repository("socketDaoImpl")
@@ -28,43 +28,38 @@ public class SocketDaoImpl implements SocketDao {
 	}
 
 	@Override
-	public void addLiveStream(Live live) throws Exception {
-		// TODO Auto-generated method stub
-
+	public void addLiveStream(Socket socket) throws Exception {
+		sqlSession.insert("SocketMapper.addLiveStream", socket);
 	}
 
 	@Override
-	public Live getLiveStream(int liveNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public Socket getLiveStream(int liveNo) throws Exception {
+		return sqlSession.selectOne("SocketMapper.getLiveStream", liveNo);
 	}
 
 	@Override
 	public void deleteLiveStream(int liveNo) throws Exception {
-		// TODO Auto-generated method stub
-
+		sqlSession.update("SocketMapper.deleteLiveStream", liveNo);
 	}
 
 	@Override
 	public int getTotalCount(Search search) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne("SocketMapper.getTotalCount", search);
 	}
 
 	@Override
-	public List<Live> listLiveStream(Search search) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Socket> listLiveStream(Search search) throws Exception {
+		return sqlSession.selectList("SocketMapper.listLiveStream", search);
 	}
 
-	@Override
-	public void addBattleStream(Live live) throws Exception {
+	/*@Override
+	public void addBattleStream(Socket socket) throws Exception {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Live getBattleStream(int liveNo) throws Exception {
+	public Socket getBattleStream(int liveNo) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -80,5 +75,5 @@ public class SocketDaoImpl implements SocketDao {
 		// TODO Auto-generated method stub
 
 	}
-
+*/
 }
