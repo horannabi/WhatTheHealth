@@ -12,9 +12,7 @@ public class DietSchedule {
 	private double bmi;
 	private int dietScCalorie;
 	private String mealTime;
-	/**
-	 * 
-	 */
+
 	public DietSchedule() {
 	}
 	public int getDietScNo() {
