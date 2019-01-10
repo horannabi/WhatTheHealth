@@ -35,12 +35,6 @@ public class PointServiceImpl implements PointService {
 	}
 
 	@Override
-	public Point getPoint(int pointNo) throws Exception {
-		// TODO Auto-generated method stub
-		return pointDao.getPoint(pointNo);
-	}
-
-	@Override
 	public Map<String, Object> listPoint(Search search) throws Exception {
 		// TODO Auto-generated method stub
 		List<Point> list= pointDao.listPoint(search);

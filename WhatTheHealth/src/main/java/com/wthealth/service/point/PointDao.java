@@ -11,9 +11,6 @@ public interface PointDao {
 		// INSERT
 		public void addPoint(Point point) throws Exception ;
 
-		// SELECT ONE
-		public Point getPoint(int pointNo) throws Exception ;
-
 		// SELECT LIST
 		public List<Point> listPoint(Search search) throws Exception ;
 

@@ -31,24 +31,6 @@ public class ActivityDaoImpl implements ActivityDao {
 	}
 
 	@Override
-	public List<Interest> listMyInterest(Search search) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("ActivityMapper.listMyInterest", search);
-	}
-
-	@Override
-	public List<Meeting> listMyMeeting(Search search) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("ActivityMapper.listMyMeeting", search);
-	}
-
-	@Override
-	public List<Reply> listMyReply(Search search) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("ActivityMapper.listMyReply", search);
-	}
-
-	@Override
 	public List<Post> listMyPost(Search search) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("ActivityMapper.listMyPost", search);

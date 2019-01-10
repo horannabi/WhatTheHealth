@@ -13,36 +13,29 @@ public interface UserService {
 		// 내정보확인 / 로그인
 		public User getUser(String userId) throws Exception;
 		
-		// 회원정보리스트 
-		public Map<String , Object> listUser(Search search) throws Exception;
-		
 		// 회원정보수정
 		public void updateUser(User user) throws Exception;
 		
 		public void deleteUser(User user) throws Exception;
 		
-		public void findId() throws Exception;
+		public User findId(String nickName) throws Exception;
 		
-		public void findPassword() throws Exception;
+		public void findPassword(User user) throws Exception;
 		
-		public void naverLogin() throws Exception;
+		public void naverLogin(User user) throws Exception;
 		
-		public void kakaoLogin() throws Exception;
+		public void kakaoLogin(User user) throws Exception;
 		
-		public void checkId() throws Exception;
+		public boolean checkId(String userId) throws Exception;
 		
-		public void checkNickname() throws Exception;
+		public boolean checkNickname(String nickName) throws Exception;
 		
-		public void checkAuth() throws Exception;
+		public void updateHavingPoint(User user) throws Exception;
 		
-		public void sendPassword() throws Exception;
+		public void updateAccount(User user) throws Exception;
 		
-		public void sendSMS() throws Exception;
-		
-		public void sendMail() throws Exception;
-		
-		// 회원 ID 중복 확인
-		public boolean checkDuplication(String userId) throws Exception;
+		/*// 회원 ID 중복 확인
+		public boolean checkDuplication(String userId) throws Exception;*/
 		
 
 }
