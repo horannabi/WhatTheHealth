@@ -1,5 +1,6 @@
 package com.wthealth.service.reply.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,38 +32,52 @@ public class ReplyServiceImpl implements ReplyService {
 	///Method
 	@Override
 	public void addReply(Reply reply) throws Exception {
-		// TODO Auto-generated method stub
-
+		replyDao.addReply(reply);
 	}
 
 	@Override
 	public void addReReply(Reply reply) throws Exception {
-		// TODO Auto-generated method stub
-
+		replyDao.addReReply(reply);
 	}
 
 	@Override
 	public Reply getReply(int replyNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return replyDao.getReply(replyNo);
 	}
 
 	@Override
 	public void deleteReply(int replyNo) throws Exception {
-		// TODO Auto-generated method stub
-
+		replyDao.deleteReply(replyNo);
 	}
 
-	@Override
+	/*@Override
 	public void deleteReReply(int replyNo) throws Exception {
 		// TODO Auto-generated method stub
 
-	}
+	}*/
 
 	@Override
 	public  Map<String , Object> listReply(Search search) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		List<Reply> list = replyDao.listReply(search);
+		int totalCount = replyDao.getTotalCount(search);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("totalCount", new Integer(totalCount));
+		
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> listMyReply(Search search, String writerId) throws Exception {
+		List<Reply> list = replyDao.listMyReply(search, writerId);
+		int totalCount = replyDao.getTotalCountMyList(writerId);
+		
+		Map<String, Object>	map = new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("totalCount", new Integer(totalCount));
+		
+		return map;
 	}
 
 }
