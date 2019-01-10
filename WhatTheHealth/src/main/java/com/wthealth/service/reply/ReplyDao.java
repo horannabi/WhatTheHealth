@@ -19,12 +19,18 @@ public interface ReplyDao {
 	public void deleteReply(int replyNo) throws Exception;
 	
 	//DELETE 대댓글 -> (주의) Update 해야 함
-	public void deleteReReply(int replyNo) throws Exception;
+	//public void deleteReReply(int replyNo) throws Exception;
 	
 	// 게시판 Page 처리를 위한 전체Row(totalCount)  return
 	public int getTotalCount(Search search) throws Exception ;
 	
+	// 게시판 Page 처리를 위한 전체Row(totalCount)  return -> My List
+	public int getTotalCountMyList(String writerId) throws Exception ;
+	
 	//SELECT LIST
 	public List<Reply> listReply(Search search) throws Exception;
+	
+	//SELECT LIST MY REPLY 
+	public List<Reply> listMyReply(Search search, String writerId) throws Exception;
 	
 }
