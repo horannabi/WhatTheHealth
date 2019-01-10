@@ -32,12 +32,6 @@ public class PointDaoImpl implements PointDao {
 	}
 
 	@Override
-	public Point getPoint(int pointNo) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("PointMapper.getPoint", pointNo);
-	}
-
-	@Override
 	public List<Point> listPoint(Search search) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("PointMapper.listPoint", search);
