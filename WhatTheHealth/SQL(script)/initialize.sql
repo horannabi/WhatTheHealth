@@ -13,6 +13,7 @@ DROP TABLE POST CASCADE CONSTRAINTS;
 DROP TABLE HASHTAG CASCADE CONSTRAINTS;
 DROP TABLE CLAIM CASCADE CONSTRAINTS;
 DROP TABLE DIET_SC CASCADE CONSTRAINTS;
+DROP TABLE SOCKET CASCADE CONSTRAINTS;
 
 DROP SEQUENCE seq_point_point_no;
 DROP SEQUENCE seq_post_post_no;
@@ -25,8 +26,11 @@ DROP SEQUENCE seq_favorite_favorite_no;
 DROP SEQUENCE seq_refund_refund_no;
 DROP SEQUENCE seq_ex_info_ex_info_no;
 DROP SEQUENCE seq_reply_reply_no;
-DROP SEQUENCE seq_meeting_meeting_no;
+DROP SEQUENCE seq_meeting_meet_no;
 DROP SEQUENCE seq_join_join_no;
+DROP SEQUENCE seq_socekt_socket_no;
+DROP SEQUENCE seq_meeting_meeting_no;
+DROP SEQUENCE seq_users_user_id;
 
 CREATE SEQUENCE seq_point_point_no	INCREMENT BY 1 START WITH 10000;
 CREATE SEQUENCE seq_post_post_no		INCREMENT BY 1 START WITH 10000;
@@ -39,21 +43,22 @@ CREATE SEQUENCE seq_favorite_favorite_no		INCREMENT BY 1 START WITH 10000;
 CREATE SEQUENCE seq_refund_refund_no		INCREMENT BY 1 START WITH 10000;
 CREATE SEQUENCE seq_ex_info_ex_info_no		INCREMENT BY 1 START WITH 10000;
 CREATE SEQUENCE seq_reply_reply_no		INCREMENT BY 1 START WITH 10000;
-CREATE SEQUENCE seq_meeting_meeting_no		INCREMENT BY 1 START WITH 10000;
+CREATE SEQUENCE seq_meeting_meet_no		INCREMENT BY 1 START WITH 10000;
 CREATE SEQUENCE seq_join_join_no		INCREMENT BY 1 START WITH 10000;
+CREATE SEQUENCE seq_socekt_socket_no		INCREMENT BY 1 START WITH 10000;
 
 CREATE TABLE users ( 
 	user_id 		VARCHAR2(20)	NOT NULL,
-	password 	VARCHAR2(10)	NOT NULL,
-	nickname 	VARCHAR2(10)	NOT NULL,
+	password 	VARCHAR2(30)	NOT NULL,
+	nickname 	VARCHAR2(30)	UNIQUE	NOT NULL,
 	email 		VARCHAR2(50),
 	user_image	VARCHAR2(100),
-	gender		VARCHAR2(5),
+	gender		VARCHAR2(5)		NOT NULL,
 	user_phone 	VARCHAR2(14),
 	reg_date 		DATE,
 	dlt_date 		DATE,
 	holder		VARCHAR2(10),
-	bank_name	VARCHAR2(10),
+	bank_name	VARCHAR2(20),
 	account_num	VARCHAR2(30),
 	claim_count	NUMBER(10)		DEFAULT '0',
 	role 		VARCHAR2(10) 		DEFAULT 'user',
@@ -68,17 +73,17 @@ CREATE TABLE users (
 
 CREATE TABLE point ( 
 	point_no 			NUMBER 			NOT NULL,
-	point_date 		DATE,
-	using_point 		NUMBER(10),
-	point_status_code		VARCHAR2(3),
+	point_date 		DATE		NOT NULL,
+	using_point 		NUMBER(10)		NOT NULL,
+	point_status_code		VARCHAR2(3)		NOT NULL,
 	sender_id 		VARCHAR2(20)	NOT NULL	REFERENCES users(user_id),
-	receiver_id		VARCHAR2(20)	REFERENCES users(user_id),
+	receiver_id		VARCHAR2(20)	NOT NULL	REFERENCES users(user_id),
 	PRIMARY KEY(point_no)
 );
 
 CREATE TABLE post (
 	post_no		VARCHAR2(10)	NOT NULL,
-	title	VARCHAR2(20)	NOT NULL,
+	title	VARCHAR2(100)	NOT NULL,
 	contents	CLOB	NOT NULL,
 	user_id	VARCHAR2(20)	NOT NULL	REFERENCES USERS(user_id),
 	post_date	DATE,
@@ -89,7 +94,7 @@ CREATE TABLE post (
 	blind_status	VARCHAR2(3),
 	category	VARCHAR2(3),
 	delete_status	VARCHAR2(3),
-	location_name	VARCHAR2(20),
+	locationtag_name	VARCHAR2(100),
 	x_coordinate	NUMBER(20),
 	y_coordinate	NUMBER(20),
 	diet_sc_no	NUMBER(10),
@@ -133,7 +138,7 @@ CREATE TABLE diet_sc(
 CREATE TABLE MEAL( 
 	meal_no NUMBER NOT NULL,
 	food_name VARCHAR2(20) NOT NULL ,
-	food_claorie NUMBER(5) NOT NULL,
+	food_calorie NUMBER(5) NOT NULL,
 	amount_food NUMBER(5) NOT NULL,
 	diet_sc_no NUMBER REFERENCES diet_sc(diet_sc_no),
 	PRIMARY KEY(meal_no)
@@ -162,9 +167,9 @@ CREATE TABLE FAVORITE(
 
 CREATE TABLE REFUND(
 	refund_no	NUMBER	NOT NULL,
-	refund_date	DATE	NOT NULL,
+	refund_date	DATE,
 	refund_money	NUMBER(10)	NOT NULL,
-	bank_name	VARCHAR2(10)	NOT NULL,
+	bank_name	VARCHAR2(20)	NOT NULL,
 	holder	VARCHAR2(10)	NOT NULL,
 	account_num	VARCHAR2(30)	NOT NULL,
 	refund_req_date	DATE	NOT NULL,
@@ -200,7 +205,7 @@ CREATE TABLE meeting (
 	meet_no	NUMBER	NOT NULL,
 	post_no	VARCHAR2(10)	NOT NULL	REFERENCES post(post_no),
 	depo_amount	NUMBER(10),
-	depo_bank	VARCHAR2(10),
+	depo_bank	VARCHAR2(20),
 	depo_account	VARCHAR2(30),
 	depo_deadline	DATE,
 	depo_acc_holder	VARCHAR2(10),
@@ -226,8 +231,8 @@ CREATE TABLE join (
 );
 
 
-CREATE TABLE live (
-	live_no	NUMBER	NOT NULL,
+CREATE TABLE socket (
+	socket_no	NUMBER	NOT NULL,
 	bj_id	VARCHAR2(20)	NOT NULL	REFERENCES users(user_id),
 	live_date	DATE	NOT NULL,
 	live_titile	VARCHAR2(20)	NOT NULL,
@@ -235,7 +240,8 @@ CREATE TABLE live (
 	live_type	VARCHAR2(3)	NOT NULL,
 	fir_player_id	VARCHAR2(20)	REFERENCES users(user_id),
 	sec_player_id	VARCHAR2(20)	REFERENCES users(user_id),
-	PRIMARY KEY(live_no)
+	live_status		VARCHAR2(3),
+	PRIMARY KEY(socket_no)
 );	
 
 commit;
