@@ -32,44 +32,6 @@ public class ActivityServiceImpl implements ActivityService {
 		System.out.println(this.getClass());
 	}
 
-	@Override
-	public Map<String, Object> listMyInterest(Search search) throws Exception {
-		// TODO Auto-generated method stub
-		List<Interest> list= activityDao.listMyInterest(search);
-		int totalCount = activityDao.getTotalCount(search);
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("list", list );
-		map.put("totalCount", new Integer(totalCount));
-		
-		return map;
-	}
-
-	@Override
-	public Map<String, Object> listMyMeeting(Search search) throws Exception {
-		// TODO Auto-generated method stub
-		List<Meeting> list= activityDao.listMyMeeting(search);
-		int totalCount = activityDao.getTotalCount(search);
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("list", list );
-		map.put("totalCount", new Integer(totalCount));
-		
-		return map;
-	}
-
-	@Override
-	public Map<String, Object> listMyReply(Search search) throws Exception {
-		// TODO Auto-generated method stub
-		List<Reply> list= activityDao.listMyReply(search);
-		int totalCount = activityDao.getTotalCount(search);
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("list", list );
-		map.put("totalCount", new Integer(totalCount));
-		
-		return map;
-	}
 
 	@Override
 	public Map<String, Object> listMyPost(Search search) throws Exception {

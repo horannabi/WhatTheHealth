@@ -9,8 +9,6 @@ public interface PointService {
 	
 	public void addPoint(Point point) throws Exception;
 
-	public Point getPoint(int pointNo) throws Exception;
-
 	public Map<String,Object> listPoint(Search search) throws Exception;
 
 	public void updatePoint(Point point) throws Exception;

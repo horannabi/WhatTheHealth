@@ -38,22 +38,43 @@ public class UserServiceImpl implements UserService{
 		return userDao.getUser(userId);
 	}
 
-	public Map<String , Object > getUserList(Search search) throws Exception {
-		List<User> list= userDao.listUser(search);
-		int totalCount = userDao.getTotalCount(search);
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("list", list );
-		map.put("totalCount", new Integer(totalCount));
-		
-		return map;
-	}
-
 	public void updateUser(User user) throws Exception {
 		userDao.updateUser(user);
 	}
 
-	public boolean checkDuplication(String userId) throws Exception {
+	@Override
+	public void deleteUser(User user) throws Exception {
+		// TODO Auto-generated method stub
+		userDao.deleteUser(user);
+	}
+
+	@Override
+	public User findId(String nickName) throws Exception {
+		// TODO Auto-generated method stub
+		return userDao.findId(nickName);
+	}
+
+	@Override
+	public void findPassword(User user) throws Exception {
+		// TODO Auto-generated method stub
+		userDao.findPassword(user);
+	}
+
+	@Override
+	public void naverLogin(User user) throws Exception {
+		// TODO Auto-generated method stub
+		userDao.naverLogin(user);
+	}
+
+	@Override
+	public void kakaoLogin(User user) throws Exception {
+		// TODO Auto-generated method stub
+		userDao.kakaoLogin(user);
+	}
+
+	@Override
+	public boolean checkId(String userId) throws Exception {
+		// TODO Auto-generated method stub
 		boolean result=true;
 		User user=userDao.getUser(userId);
 		if(user != null) {
@@ -63,75 +84,36 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public Map<String, Object> listUser(Search search) throws Exception {
+	public boolean checkNickname(String nickName) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		boolean result=true;
+		User user=userDao.findId(nickName);
+		if(user != null) {
+			result=false;
+		}
+		return result;
+	}
+	
+
+	/*public boolean checkDuplication(String userId) throws Exception {
+		boolean result=true;
+		User user=userDao.getUser(userId);
+		if(user != null) {
+			result=false;
+		}
+		return result;
+	}*/
+
+	@Override
+	public void updateHavingPoint(User user) throws Exception {
+		// TODO Auto-generated method stub
+		userDao.updateHavingPoint(user);
 	}
 
 	@Override
-	public void deleteUser(User user) throws Exception {
+	public void updateAccount(User user) throws Exception {
 		// TODO Auto-generated method stub
-		
+		userDao.updateAccount(user);
 	}
-
-	@Override
-	public void findId() throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void findPassword() throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void naverLogin() throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void kakaoLogin() throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void checkId() throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void checkNickname() throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void checkAuth() throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void sendPassword() throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void sendSMS() throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void sendMail() throws Exception {
-		// TODO Auto-generated method stub
-		
-	}	
 
 }
