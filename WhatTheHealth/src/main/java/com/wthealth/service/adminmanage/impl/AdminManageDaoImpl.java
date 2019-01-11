@@ -1,5 +1,6 @@
 package com.wthealth.service.adminmanage.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.wthealth.common.Search;
+import com.wthealth.domain.Point;
 import com.wthealth.domain.User;
 import com.wthealth.service.adminmanage.AdminManageDao;
 
@@ -28,25 +30,26 @@ public class AdminManageDaoImpl implements AdminManageDao {
 	}
 	
 	@Override
-	public Map<String, Object> listUserAdminManage(Search search) throws Exception {
-		return null;
+	public List<User> listUserAdminManage(Search search) throws Exception {
+		return sqlSession.selectList("AdminManageMapper.listUserAdminManage", search);
 	}
 
 	@Override
 	public User getAdminManage(String userId) throws Exception {
-		
-		return null;
+		return sqlSession.selectOne("AdminManageMapper.getAdminManage", userId);
 	}
 
 	@Override
 	public void updateUserAdminManage(User user) throws Exception {
-
+		sqlSession.update("AdminManageMapper.updateAdminManage", user);
+		sqlSession.update("AdminManageMapper.updateAdminManage", user);
 	}
 
 	@Override
 	public int getTotalCount(Search search) throws Exception {
-	
-		return 0;
+		return sqlSession.selectOne("AdminManageMapper.getTotalCount", search);
 	}
+
+	
 
 }

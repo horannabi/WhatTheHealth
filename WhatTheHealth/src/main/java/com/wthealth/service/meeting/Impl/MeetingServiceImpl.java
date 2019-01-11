@@ -1,5 +1,7 @@
 package com.wthealth.service.meeting.Impl;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,7 @@ import com.wthealth.service.meeting.MeetingService;
 public class MeetingServiceImpl implements MeetingService {
 	///Field
 	@Autowired
-	@Qualifier("meetingServiceImpl")
+	@Qualifier("meetingDaoImpl")
 	private MeetingDao meetingDao;
 	public void setMeetingDao(MeetingDao meetingDao) {
 		this.meetingDao = meetingDao;
@@ -30,8 +32,7 @@ public class MeetingServiceImpl implements MeetingService {
 	///Method
 	@Override
 	public void addMeeting(Meeting meeting) throws Exception {
-		// TODO Auto-generated method stub
-
+		meetingDao.addMeeting(meeting);
 	}
 
 	/*@Override
@@ -41,50 +42,56 @@ public class MeetingServiceImpl implements MeetingService {
 
 	@Override
 	public void deleteMeeting(String postNo) throws Exception {
-		// TODO Auto-generated method stub
-
+		meetingDao.deleteMeeting(postNo);
 	}
 
 	@Override
 	public Meeting getMeeting(String postNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return meetingDao.getMeeting(postNo);
 	}
 
 	@Override
 	public Map<String, Object> listMeeting(Search search) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		List<Meeting> list = meetingDao.listMeeting(search);
+		int totalCount = meetingDao.getTotalCount(search);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("totalCount", new Integer(totalCount));
+		
+		return map;
 	}
 
 	@Override
 	public void addJoin(Join join) throws Exception {
-		// TODO Auto-generated method stub
-
+		meetingDao.addJoin(join);
 	}
 
 	@Override
 	public void deleteJoin(int joinNo) throws Exception {
-		// TODO Auto-generated method stub
-
+		meetingDao.deleteJoin(joinNo);
 	}
 
 	@Override
 	public Map<String, Object> listJoinedMeeting(Search search, String partyId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		List<Join> list = meetingDao.listJoinedMeeting(search, partyId);
+		int totalCount = meetingDao.getTotalCountJoin(partyId);
+		
+		Map<String, Object>	map = new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("totalCount", new Integer(totalCount));
+		
+		return map;
 	}
 
 	@Override
 	public Meeting getJoin(int joinNo)  throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return meetingDao.getJoin(joinNo);
 	}
 
 	@Override
 	public void updateDeposit(int joinNo) throws Exception {
-		// TODO Auto-generated method stub
-
+		meetingDao.updateDeposit(joinNo);
 	}
 
 }

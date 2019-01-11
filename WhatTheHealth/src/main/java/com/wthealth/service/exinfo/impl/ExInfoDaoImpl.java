@@ -26,36 +26,34 @@ public class ExInfoDaoImpl implements ExInfoDao{
 	public ExInfoDaoImpl() {
 		System.out.println(this.getClass());
 	}
-	@Override
+	//@Override
 	public void addExInfo(Post post) throws Exception {
-		sqlSession.insert("ExInfoMapper.addExinfo", post);
-		
+		sqlSession.insert("ExInfoMapper.addPost", post);
+	//	int postNo = post.getPostNo();
 	}
 
 	@Override
 	public Post getExInfo(int exInfoNo) throws Exception {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("ExInfoMapper.getExInfo", exInfoNo);
 	}
 
-	@Override
+	//@Override
 	public void updateExInfo(Post post) throws Exception {
 		sqlSession.update("ExInfoMapper.updateExinfo", post);
+		sqlSession.update("ExInfoMapper.updatePost", post);
 	}
 
-	@Override
+	//@Override
 	public Map<String, Object> listExInfo(Search search) throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	//@Override
 	public void deleteExInfo(int postNo) throws Exception {
-		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	//@Override
 	public Map<String, Object> listExInfo(String Weather) throws Exception {
 		// TODO Auto-generated method stub
 		return null;

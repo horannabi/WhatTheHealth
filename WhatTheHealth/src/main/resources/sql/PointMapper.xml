@@ -8,9 +8,9 @@
  	
  	
 	<resultMap id="pointSelectMap" type="com.wthealth.domain.Point">
-		<result property="pointNo" 			column="point_no" 			jdbcType="INTEGER"/>
+		<result property="pointNo" 			column="point_no" 			jdbcType="NUMERIC"/>
 		<result property="pointDate" 	column="point_date" 		jdbcType="DATE" />
-		<result property="usingPoint"	column="using_point" 		jdbcType="INTEGER" />
+		<result property="usingPoint"	column="using_point" 		jdbcType="NUMERIC" />
 		<result property="pointStatus" 			column="point_status_code" 				jdbcType="VARCHAR"  />
 		<result property="senderId" 			column="sender_id" 				jdbcType="VARCHAR"  />
 		<result property="receiverId" 			column="receiver_id" 				jdbcType="VARCHAR"  />	
@@ -41,7 +41,7 @@
 	 
 		 
 	 <!-- SQL : SELECT LIST -->
-	<select  id="listPoint"  parameterType="search"	resultMap="pointSelectMap">
+	<select  id="listPoint"  parameterType="com.wthealth.common.Search"	resultMap="pointSelectMap">
 	  	SELECT *
 	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
 	  					FROM		(	SELECT point_date, using_point, point_status_code, receiver_id 
@@ -62,7 +62,7 @@
 	 </select>
 	 
 	 <!-- SQL : SELECT ROW Count -->	 
-	 <select  id="getTotalCount"  parameterType="search"	 resultType="int">
+	 <select  id="getTotalCount"  parameterType="com.wthealth.common.Search"	 resultType="int">
 	  	SELECT COUNT(*)
 	  	FROM(	SELECT point_date, using_point, point_status_code, receiver_id 
 	  				FROM point ) countTable						

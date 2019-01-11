@@ -11,9 +11,9 @@
 		<result property="exScNo" 			column="ex_sc_no" 				jdbcType="VARCHAR"/>
 		<result property="userId"				column="user_id" 				jdbcType="VARCHAR" />
 		<result property="exScName" 		column="ex_sc_title"	 			jdbcType="VARCHAR" />
-		<result property="exScCalorie" 		column="ex_sc_calorie"			jdbcType="INTEGER" />
+		<result property="exScCalorie" 		column="ex_sc_calorie"			jdbcType="NUMERIC" />
 		<result property="exScTime" 		column="ex_sc_time" 			jdbcType="DATE" />
-		<result property="exScContents" 	column="ex_sc_contents" 		jdbcType="INTEGER" />	
+		<result property="exScContents" 	column="ex_sc_contents" 		jdbcType="NUMERIC" />	
 		<result property="exScDate" 		column="ex_sc_date" 			jdbcType="DATE" />
 		<result property="postNo" 			column="post_no"	 			jdbcType="VARCHAR" />
 	</resultMap>
@@ -28,7 +28,7 @@
 	
 	 
 	 <!-- SQL : SELECT  -->
-	 <select 	id="getExSchedule"	 parameterType="int"	 resultMap="com.wthealth.domain.DietSchedule">
+	 <select 	id="getExSchedule"	 parameterType="int"	 resultMap="exScSelectMap">
 		SELECT
 		ex_sc_title, ex_sc_contents, ex_sc_calorie, ex_sc_time, post_no
 		FROM ex_sc
@@ -56,7 +56,7 @@
 	 </update>
 		 
 	<!-- SQL : SELECT LIST 도형이꺼봐야지 -->
-	<select  id="listSchedule"  resultMap="userSelectMap">
+	<select  id="listSchedule"  resultMap="exScSelectMap">
 	  	SELECT *
 	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
 	  					FROM		(	SELECT user_id , user_name , email

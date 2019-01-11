@@ -1,13 +1,14 @@
 package com.wthealth.service.adminmanage;
 
-import java.util.Map;
+import java.util.List;
 
 import com.wthealth.common.Search;
+import com.wthealth.domain.Point;
 import com.wthealth.domain.User;
 
 public interface AdminManageDao {
-
-	public Map<String, Object> listUserAdminManage(Search search) throws Exception;
+	
+	public List<User> listUserAdminManage(Search search) throws Exception;
 	
 	public User getAdminManage(String userId) throws Exception;
 	

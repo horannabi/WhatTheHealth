@@ -111,7 +111,7 @@
 	 </update>
 	
 	<!-- SQL : SELECT LIST -->
-	<select  id="listMeeting"  parameterType="com.wthealth.common.Search"	resultMap="replySelectMap">
+	<select  id="listMeeting"  parameterType="com.wthealth.common.Search"	resultMap="meetingSelectMap">
 	  	SELECT *
 	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
 	  					FROM		(	SELECT m.meet_no, m.post_no, m.min_party, m.max_party, m.depo_condition, m.meet_time, m.deadline_time, m.entryfee

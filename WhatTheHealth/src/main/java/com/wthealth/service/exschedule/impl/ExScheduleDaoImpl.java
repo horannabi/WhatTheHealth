@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.wthealth.service.exschedule.ExScheduleDao;
-@Repository("ExScheduleDaoImpl")
+@Repository("exScheduleDaoImpl")
 public class ExScheduleDaoImpl implements ExScheduleDao {
 	
 	///Field

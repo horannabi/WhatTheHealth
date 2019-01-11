@@ -18,7 +18,7 @@ public class ReplyServiceImpl implements ReplyService {
 
 	///Field
 	@Autowired
-	@Qualifier("replyServiceImpl")
+	@Qualifier("replyDaoImpl")
 	private ReplyDao replyDao;
 	public void setReplyDao(ReplyDao replyDao) {
 		this.replyDao = replyDao;

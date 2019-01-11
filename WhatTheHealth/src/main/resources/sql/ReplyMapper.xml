@@ -23,7 +23,7 @@
 	<insert 	id="addReply"		parameterType="com.wthealth.domain.Reply" >
 	 	INSERT
 		INTO reply ( reply_no , rereply_no , reply_date , post_no, text, writer_id, blind_status , delete_status) 
-		VALUES	 (	seq_reply_reply_no.nextval, '0' , #{replyDate} , #{postNo:} , 
+		VALUES	 (	seq_reply_reply_no.nextval, '0', SYSDATE, #{postNo} , 
 							#{text} , #{writerId} , #{blindStatus:VARCHAR} , #{deleteStatus:VARCHAR})
 	 </insert>
 	 

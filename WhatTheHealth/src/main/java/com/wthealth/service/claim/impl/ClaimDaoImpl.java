@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.wthealth.service.claim.ClaimDao;
 
-@Repository("ClaimDaoImpl")
+@Repository("claimDaoImpl")
 public class ClaimDaoImpl implements ClaimDao {
 
 	///Field

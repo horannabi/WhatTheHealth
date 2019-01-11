@@ -8,7 +8,7 @@
  	
  	
 	<resultMap id="claimSelectMap" type="com.wthealth.domain.Claim">
-		<result property="claimNo" 				column="claim_no" 						jdbcType="INTEGER"/>
+		<result property="claimNo" 				column="claim_no" 						jdbcType="NUMERIC"/>
 		<result property="userId"					column="user_id" 						jdbcType="VARCHAR" />
 		<result property="claimedUserId" 		column="claimed_id" 					jdbcType="VARCHAR" />
 		<result property="claimDate" 			column="claim_date" 					jdbcType="DATE" />

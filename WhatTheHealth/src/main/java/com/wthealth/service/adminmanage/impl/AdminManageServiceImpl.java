@@ -1,5 +1,6 @@
 package com.wthealth.service.adminmanage.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.wthealth.common.Search;
+import com.wthealth.domain.Point;
 import com.wthealth.domain.User;
 import com.wthealth.service.adminmanage.AdminManageDao;
 import com.wthealth.service.adminmanage.AdminManageService;
@@ -29,7 +31,7 @@ public class AdminManageServiceImpl implements AdminManageService {
 	}
 	
 	@Override
-	public Map<String, Object> listUserAdminManage(Search search) throws Exception {
+	public List<User> listUserAdminManage(Search search) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -45,5 +47,8 @@ public class AdminManageServiceImpl implements AdminManageService {
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	
 
 }
