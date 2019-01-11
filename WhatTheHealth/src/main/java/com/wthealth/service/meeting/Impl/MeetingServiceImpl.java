@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.wthealth.common.Search;
 import com.wthealth.domain.Join;
 import com.wthealth.domain.Meeting;
+import com.wthealth.domain.Post;
 import com.wthealth.service.meeting.MeetingDao;
 import com.wthealth.service.meeting.MeetingService;
 
@@ -31,8 +32,16 @@ public class MeetingServiceImpl implements MeetingService {
 
 	///Method
 	@Override
-	public void addMeeting(Meeting meeting) throws Exception {
-		meetingDao.addMeeting(meeting);
+	public int addMeeting(Meeting meeting) throws Exception {
+		//int meetNo = meetingDao.addMeeting(meeting);
+		//meetingDao.addMeetingPost();
+		return meetingDao.addMeeting(meeting);
+		//meetingDao.addMeeingPost(post);
+	}
+	
+	@Override
+	public void addMeetingPost(Post post) throws Exception {
+		meetingDao.addMeetingPost(post);	
 	}
 
 	/*@Override
@@ -45,9 +54,16 @@ public class MeetingServiceImpl implements MeetingService {
 		meetingDao.deleteMeeting(postNo);
 	}
 
+	
+
 	@Override
 	public Meeting getMeeting(String postNo) throws Exception {
 		return meetingDao.getMeeting(postNo);
+	}
+
+	@Override
+	public Post getMeetingPost(String postNo) throws Exception {
+		return meetingDao.getMeetingPost(postNo);
 	}
 
 	@Override

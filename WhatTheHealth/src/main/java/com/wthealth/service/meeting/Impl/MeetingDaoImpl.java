@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.wthealth.common.Search;
 import com.wthealth.domain.Join;
 import com.wthealth.domain.Meeting;
+import com.wthealth.domain.Post;
 import com.wthealth.service.meeting.MeetingDao;
 
 @Repository("meetingDaoImpl")
@@ -31,15 +32,21 @@ public class MeetingDaoImpl implements MeetingDao {
 
 	///Method
 	@Override
-	public void addMeeting(Meeting meeting) throws Exception {
-		sqlSession.insert("MeetingMapper.addMeeting", meeting);
+	public int addMeeting(Meeting meeting) throws Exception {
+		return sqlSession.insert("MeetingMapper.addMeeting", meeting);
 	}
-
+	
+	
 	/*@Override
 	public void updateMeeting(Meeting meeting) throws Exception {
 		// TODO Auto-generated method stub
 
 	}*/
+
+	@Override
+	public void addMeetingPost(Post post) throws Exception {
+		sqlSession.insert("MeetingMapper.addMeetingPost", post);
+	}
 
 	@Override
 	public void deleteMeeting(String postNo) throws Exception {
@@ -49,6 +56,11 @@ public class MeetingDaoImpl implements MeetingDao {
 	@Override
 	public Meeting getMeeting(String postNo) throws Exception {
 		return sqlSession.selectOne("MeetingMapper.getMeeting", postNo);
+	}
+
+	@Override
+	public Post getMeetingPost(String postNo) throws Exception {
+		return sqlSession.selectOne("MeetingMapper.getMeetingPost", postNo);
 	}
 
 	@Override
@@ -91,7 +103,7 @@ public class MeetingDaoImpl implements MeetingDao {
 
 	@Override
 	public void updateDeposit(int joinNo) throws Exception {
-		// TODO Auto-generated method stub
+		sqlSession.update("MeetingMapper.updateDeposit", joinNo);
 
 	}
 
