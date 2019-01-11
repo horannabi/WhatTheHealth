@@ -37,7 +37,7 @@
 	 </insert>
 	 
 	 <!-- SQL : SELECT  -->
-	 <select 	id="getDietSchedule"	 parameterType="int"	 resultMap="com.wthealth.domain.DietSchedule">
+	 <select 	id="getDietSchedule"	 parameterType="int"	 resultMap="dietScSelectMap">
 		SELECT
 		m.food_name, m.food_claorie, m.amount_food, d.bmi_value, d.weight
 		FROM meal m, diet_sc d 
@@ -52,7 +52,7 @@
 	 </delete>
 		 
 	<!-- SQL : SELECT LIST 도형이꺼봐야지 -->
-	<select  id="listSchedule"  resultMap="userSelectMap">
+	<select  id="listSchedule"  resultMap="dietScSelectMap">
 	  	SELECT *
 	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
 	  					FROM		(	SELECT user_id , user_name , email

@@ -28,6 +28,7 @@ DROP SEQUENCE seq_ex_info_ex_info_no;
 DROP SEQUENCE seq_reply_reply_no;
 DROP SEQUENCE seq_meeting_meet_no;
 DROP SEQUENCE seq_join_join_no;
+DROP SEQUENCE seq_socket_socket_no;
 DROP SEQUENCE seq_socekt_socket_no;
 DROP SEQUENCE seq_meeting_meeting_no;
 DROP SEQUENCE seq_users_user_id;
@@ -45,7 +46,7 @@ CREATE SEQUENCE seq_ex_info_ex_info_no		INCREMENT BY 1 START WITH 10000;
 CREATE SEQUENCE seq_reply_reply_no		INCREMENT BY 1 START WITH 10000;
 CREATE SEQUENCE seq_meeting_meet_no		INCREMENT BY 1 START WITH 10000;
 CREATE SEQUENCE seq_join_join_no		INCREMENT BY 1 START WITH 10000;
-CREATE SEQUENCE seq_socekt_socket_no		INCREMENT BY 1 START WITH 10000;
+CREATE SEQUENCE seq_socket_socket_no		INCREMENT BY 1 START WITH 10000;
 
 CREATE TABLE users ( 
 	user_id 		VARCHAR2(20)	NOT NULL,
@@ -77,7 +78,7 @@ CREATE TABLE point (
 	using_point 		NUMBER(10)		NOT NULL,
 	point_status_code		VARCHAR2(3)		NOT NULL,
 	sender_id 		VARCHAR2(20)	NOT NULL	REFERENCES users(user_id),
-	receiver_id		VARCHAR2(20)	NOT NULL	REFERENCES users(user_id),
+	receiver_id		VARCHAR2(20)	REFERENCES users(user_id),
 	PRIMARY KEY(point_no)
 );
 
@@ -235,7 +236,7 @@ CREATE TABLE socket (
 	socket_no	NUMBER	NOT NULL,
 	bj_id	VARCHAR2(20)	NOT NULL	REFERENCES users(user_id),
 	live_date	DATE	NOT NULL,
-	live_titile	VARCHAR2(20)	NOT NULL,
+	live_title	VARCHAR2(100)	NOT NULL,
 	total_viewer	NUMBER(10),
 	live_type	VARCHAR2(3)	NOT NULL,
 	fir_player_id	VARCHAR2(20)	REFERENCES users(user_id),

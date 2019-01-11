@@ -1,6 +1,8 @@
 package com.wthealth.service.meeting.Impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +32,7 @@ public class MeetingDaoImpl implements MeetingDao {
 	///Method
 	@Override
 	public void addMeeting(Meeting meeting) throws Exception {
-		// TODO Auto-generated method stub
-
+		sqlSession.insert("MeetingMapper.addMeeting", meeting);
 	}
 
 	/*@Override
@@ -42,56 +43,50 @@ public class MeetingDaoImpl implements MeetingDao {
 
 	@Override
 	public void deleteMeeting(String postNo) throws Exception {
-		// TODO Auto-generated method stub
-
+		sqlSession.update("MeetingMapper.deleteMeeting", postNo);
 	}
 
 	@Override
 	public Meeting getMeeting(String postNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("MeetingMapper.getMeeting", postNo);
 	}
 
 	@Override
 	public List<Meeting> listMeeting(Search search) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("MeetingMapper.listMeeting", search);
 	}
 
 	@Override
 	public void addJoin(Join join) throws Exception {
-		// TODO Auto-generated method stub
-
+		sqlSession.insert("MeetingMapper.addJoin", join);
 	}
 
 	@Override
 	public void deleteJoin(int joinNo) throws Exception {
-		// TODO Auto-generated method stub
-
+		sqlSession.update("MeetingMapper.deleteJoin", joinNo);
 	}
 
 	@Override
 	public List<Join> listJoinedMeeting(Search search, String partyId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("search", search);
+		map.put("partyId", partyId);
+		return sqlSession.selectList("MeetingMapper.listJoinedMeeting", map);
 	}
 
 	@Override
 	public int getTotalCount(Search search) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne("MeetingMapper.getTotalCount", search);
 	}
 
 	@Override
 	public int getTotalCountJoin(String partyId) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne("MeetingMapper.getTotalCountJoin", partyId);
 	}
 
 	@Override
 	public Meeting getJoin(int joinNo)  throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("MeetingMapper.getJoin", joinNo);
 	}
 
 	@Override

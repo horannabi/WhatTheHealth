@@ -28,7 +28,7 @@
 	
 	 
 	 <!-- SQL : SELECT  -->
-	 <select 	id="getExSchedule"	 parameterType="int"	 resultMap="com.wthealth.domain.DietSchedule">
+	 <select 	id="getExSchedule"	 parameterType="int"	 resultMap="exScSelectMap">
 		SELECT
 		ex_sc_title, ex_sc_contents, ex_sc_calorie, ex_sc_time, post_no
 		FROM ex_sc
@@ -56,7 +56,7 @@
 	 </update>
 		 
 	<!-- SQL : SELECT LIST 도형이꺼봐야지 -->
-	<select  id="listSchedule"  resultMap="userSelectMap">
+	<select  id="listSchedule"  resultMap="exScSelectMap">
 	  	SELECT *
 	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
 	  					FROM		(	SELECT user_id , user_name , email

@@ -68,12 +68,12 @@ public class Reply {
 		this.text = text;
 	}
 
-	public String getWriterIdd() {
+	public String getWriterId() {
 		return writerId;
 	}
 
-	public void setWriterIdd(String writerIdd) {
-		this.writerId = writerIdd;
+	public void setWriterId(String writerId) {
+		this.writerId = writerId;
 	}
 
 	public String getBlindStatus() {

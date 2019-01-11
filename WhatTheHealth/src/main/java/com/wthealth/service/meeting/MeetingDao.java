@@ -26,7 +26,7 @@ public interface MeetingDao {
 	public void addJoin(Join join) throws Exception;
 	
 	//DELETE 소모임참여
-	public void deleteJoin(int JoinNo) throws Exception;
+	public void deleteJoin(int joinNo) throws Exception;
 	
 	//SELECT LIST
 	public List<Join> listJoinedMeeting(Search search, String partyId) throws Exception;

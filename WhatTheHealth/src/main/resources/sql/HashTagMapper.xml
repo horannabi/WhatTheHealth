@@ -24,7 +24,7 @@
 	
 	 
 	 <!-- SQL : SELECT  -->
-	 <select 	id="getExSchedule"	 parameterType="int"	 resultMap="com.wthealth.domain.DietSchedule">
+	 <select 	id="getExSchedule"	 parameterType="int"	 resultMap="hashTagSelectMap">
 		SELECT
 		ex_sc_title, ex_sc_contents, ex_sc_calorie, ex_sc_time, post_no
 		FROM ex_sc
