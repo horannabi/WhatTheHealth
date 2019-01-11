@@ -14,14 +14,14 @@
       <result property="contents" column="contents" jdbcType="VARCHAR" />
       <result property="photo" column="photo" jdbcType="VARCHAR" />
       <result property="video" column="video" jdbcType="VARCHAR" />
-      <result property="clickCount" column="click_count" jdbcType="INTEGER" />
+      <result property="clickCount" column="click_count" jdbcType="NUMERIC" />
       <result property="blindStatus" column="blind_status" jdbcType="VARCHAR" />
       <result property="deleteStatus" column="delete_status"	jdbcType="VARCHAR" />
-      <result property="likeCount" column="like_count" jdbcType="INTEGER" />
+      <result property="likeCount" column="like_count" jdbcType="NUMERIC" />
       <result property="category" column="category" jdbcType="VARCHAR" />
       <result property="postDate" column="post_date" jdbcType="DATE" />
-      <result property="exScNo" column="ex_sc_no" jdbcType="INTEGER" />
-      <result property="dietScNo" column="diet_sc_no" jdbcType="INTEGER" />
+      <result property="exScNo" column="ex_sc_no" jdbcType="NUMERIC" />
+      <result property="dietScNo" column="diet_sc_no" jdbcType="NUMERIC" />
       <result property="locationTagName" column="locationtag_name" jdbcType="VARCHAR" />
       <result property="xCoordinate" column="x_coordinate" jdbcType="NUMERIC" />
       <result property="yCoordinate" column="y_coordinate" jdbcType="NUMERIC" />
@@ -29,7 +29,7 @@
    </resultMap>
 	
 	<!-- SQL : SELECT LIST -->
-   <select id="listPost" resultMap="postSelectMap" parameterType="search">
+   <select id="listPost" resultMap="postSelectMap" parameterType="com.wthealth.common.Search">
       SELECT *
       FROM ( SELECT inner_table.* , ROWNUM AS row_seq
          FROM ( SELECT post_no, category, title, post_date
@@ -40,7 +40,7 @@
    </select>	 
 
 	 <!-- SQL : SELECT ROW Count -->	 
-	 <select  id="getTotalCount"  parameterType="search"	 resultType="int">
+	 <select  id="getTotalCount"  parameterType="com.wthealth.common.Search"	 resultType="int">
 	  	SELECT COUNT(*)
 	  	FROM(	SELECT post_no, category, title, post_date
             FROM post ) countTable						

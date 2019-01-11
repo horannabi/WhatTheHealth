@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.wthealth.service.dietschedule.DietScheduleDao;
-@Repository("DietScheduleDaoImpl")
+@Repository("dietScheduleDaoImpl")
 public class DietScheduleDaoImpl implements DietScheduleDao {
 
 	///Field

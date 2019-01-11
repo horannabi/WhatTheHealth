@@ -25,9 +25,9 @@
 		<mapper resource="sql/PointMapper.xml"/>
 		<mapper resource="sql/ActivityMapper.xml"/>
 		<!-- 정연 -->
-		<mapper resource="sql/DietComMapper.xml "/>
-		<mapper resource="sql/ExComMapper.xml "/>
-		<mapper resource="sql/RefundMapper.xml "/>
+		<mapper resource="sql/DietComMapper.xml"/>
+		<mapper resource="sql/ExComMapper.xml"/>
+		<mapper resource="sql/RefundMapper.xml"/>
 		<mapper resource="sql/FavoriteMapper.xml"/>
 		<!-- 성민 -->
 		<mapper resource="sql/ClaimMapper.xml"/>
@@ -35,7 +35,7 @@
 		<mapper resource="sql/ExScMapper.xml"/>
 		<mapper resource="sql/HashTagMapper.xml"/>
 		<!-- 동환 -->
-		<mapper resource="sql/AdminManageMapper.xml"/>
+		<!-- <mapper resource="sql/AdminManageMapper.xml"/> -->
 		<mapper resource="sql/ExInfoMapper.xml"/>
 		<mapper resource="sql/MainMapper.xml"/>
 		<!-- 호란-->

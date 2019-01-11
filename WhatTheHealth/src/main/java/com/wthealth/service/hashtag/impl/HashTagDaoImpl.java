@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.wthealth.service.hashtag.HashTagDao;
 
-@Repository("HashTagDaoImpl")
+@Repository("hashTagDaoImpl")
 public class HashTagDaoImpl implements HashTagDao {
 	
 	///Field

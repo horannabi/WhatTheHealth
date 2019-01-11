@@ -7,12 +7,12 @@
 <mapper namespace="RefundMapper">
 
 	<resultMap id="refundSelectMap" type="com.wthealth.domain.Refund">
-		<result property="refundNo" column="refund_no" jdbcType="INTEGER" />
+		<result property="refundNo" column="refund_no" jdbcType="NUMERIC" />
 		<result property="refundDate" column="refund_date" jdbcType="DATE" />
-		<result property="refundMoney" column="refund_money" jdbcType="INTEGER" />
+		<result property="refundMoney" column="refund_money" jdbcType="NUMERIC" />
 		<result property="bankName" column="bank_name" jdbcType="VARCHAR" />
 		<result property="holder" column="holder" jdbcType="VARCHAR" />
-		<result property="accountNum" column="account_num" jdbcType="INTEGER" />
+		<result property="accountNum" column="account_num" jdbcType="NUMERIC" />
 		<result property="refundReqDate" column="refund_req_date" jdbcType="DATE" />
 		<result property="userId" column="user_id" jdbcType="VARCHAR" />
 		<result property="refundStatus" column="refund_status" jdbcType="VARCHAR" />
@@ -39,7 +39,7 @@
 	</update>
 
 	<!-- SQL : SELECT LIST -->
-	<select id="listRefund" resultMap="refundSelectMap"	parameterType="search">
+	<select id="listRefund" resultMap="refundSelectMap"	parameterType="com.wthealth.common.Search">
 		SELECT *
 		FROM ( SELECT inner_table.* , ROWNUM AS row_seq
 			FROM ( SELECT *
@@ -64,7 +64,7 @@
 		<![CDATA[ <=]]> #{endRowNum} ) -->
 
 	<!-- SQL : SELECT LIST -->
-	<select id="listRefundAdmin" resultMap="refundSelectMap" parameterType="search">
+	<select id="listRefundAdmin" resultMap="refundSelectMap" parameterType="com.wthealth.common.Search">
 		SELECT *
 		FROM ( SELECT inner_table.* , ROWNUM AS row_seq
 			FROM ( SELECT *
@@ -90,7 +90,7 @@
 	
 	
 	<!-- SQL : SELECT ROW Count -->
-	<select id="getTotalCount" parameterType="search" resultType="int">
+	<select id="getTotalCount" parameterType="com.wthealth.common.Search" resultType="int">
 		SELECT COUNT(*)
 		FROM( SELECT *
 			FROM refund

@@ -8,19 +8,19 @@
  	
  	
 	<resultMap id="dietScSelectMap" type="com.wthealth.domain.DietSchedule">
-		<result property="dietScNo" 			column="DIET_SC_NO" 			jdbcType="INTEGER"/>
+		<result property="dietScNo" 			column="DIET_SC_NO" 			jdbcType="NUMERIC"/>
 		<result property="userId"				column="USER_ID" 			jdbcType="VARCHAR" />
 		<result property="dietScDate" 		column="DIET_SC_DATE" 					jdbcType="DATE" />
 		<result property="mealTime" 		column="MEAL_TIME" 					jdbcType="VARCHAR" />
-		<result property="bmi" 				column="BMI_VALUE" 					jdbcType="INTEGER" />
-		<result property="weight" 			column="WEIGHT" 			jdbcType="INTEGER" />		
+		<result property="bmi" 				column="BMI_VALUE" 					jdbcType="NUMERIC" />
+		<result property="weight" 			column="WEIGHT" 			jdbcType="NUMERIC" />		
 	</resultMap>
 	
 	<resultMap id="foodSelectMap" type="com.wthealth.domain.Food">
 		<result property="foodName" 			column="food_name" 			jdbcType="VARCHAR"/>
-		<result property="foodCalorie"			column="food_calorie" 			jdbcType="INTEGER" />
-		<result property="amountFood" 			column="amount_food" 			jdbcType="INTEGER" />
-		<result property="dietScNo" 				column="diet_sc_no" 			jdbcType="INTEGER" />
+		<result property="foodCalorie"			column="food_calorie" 			jdbcType="NUMERIC" />
+		<result property="amountFood" 			column="amount_food" 			jdbcType="NUMERIC" />
+		<result property="dietScNo" 				column="diet_sc_no" 			jdbcType="NUMERIC" />
 	</resultMap>
 	
 	<!-- SQL : INSERT DIET_SC -->
@@ -45,7 +45,7 @@
 	 </select>
 	 
 	 <!-- SQL : DELETE -->
-	 <delete	id="deleteMeal"	parameterType="user" >
+	 <delete	id="deleteMeal"	parameterType="com.wthealth.domain.User" >
 	   	DELETE
 	   	FROM meal
 	   	WHERE diet_sc_no = #{diet_sc_no}

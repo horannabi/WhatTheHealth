@@ -16,7 +16,7 @@ import com.wthealth.service.meeting.MeetingService;
 public class MeetingServiceImpl implements MeetingService {
 	///Field
 	@Autowired
-	@Qualifier("meetingServiceImpl")
+	@Qualifier("meetingDaoImpl")
 	private MeetingDao meetingDao;
 	public void setMeetingDao(MeetingDao meetingDao) {
 		this.meetingDao = meetingDao;

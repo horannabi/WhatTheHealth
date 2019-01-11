@@ -17,21 +17,21 @@
      	 <result property="photo"			column="photo" 				 jdbcType="VARCHAR" />
      	 <result property="video"			column="video" 				 jdbcType="VARCHAR" />
      	 <result property="contents" 		column="contents"			 jdbcType="VARCHAR" />
-     	 <result property="clickCount"  	column="click_count"		 jdbcType="INTEGER" />
+     	 <result property="clickCount"  	column="click_count"		 jdbcType="NUMERIC" />
       	 <result property="blindStatus"	 	column="blind_status" 		 jdbcType="VARCHAR" />
       	 <result property="deleteStatus" 	column="delete_status" 		 jdbcType="VARCHAR" />
-      	 <result property="likeCount" 		column="like_count" 		 jdbcType="INTEGER" />
+      	 <result property="likeCount" 		column="like_count" 		 jdbcType="NUMERIC" />
      	 <result property="category" 		column="category" 		 	 jdbcType="VARCHAR" />
       	 <result property="postDate" 		column="post_date"	 	 	 jdbcType="DATE" />
       	 <!-- 운동정보 -->
-      	 <result property="exInfoNo"	 	column="blind_status" 		 jdbcType="INTEGER" />
-      	 <result property="exCalorie" 		column="delete_status" 		 jdbcType="INTEGER" />
+      	 <result property="exInfoNo"	 	column="blind_status" 		 jdbcType="NUMERIC" />
+      	 <result property="exCalorie" 		column="delete_status" 		 jdbcType="NUMERIC" />
       	 <result property="exPlace" 		column="like_count" 		 jdbcType="VARCHAR" />
       	 <result property="exPart" 			column="delete_status" 		 jdbcType="VARCHAR" />
       	 <result property="exVideoTime" 	column="like_count" 		 jdbcType="VARCHAR" />
       	 <!-- 스케줄 -->
-      	 <result property="exScNo" 			column="ex_sc_no" 	     	 jdbcType="INTEGER" />
-      	 <result property="dietScNo" 		column="diet_sc_no" 	 	 jdbcType="INTEGER" />
+      	 <result property="exScNo" 			column="ex_sc_no" 	     	 jdbcType="NUMERIC" />
+      	 <result property="dietScNo" 		column="diet_sc_no" 	 	 jdbcType="NUMERIC" />
 		 <!-- 위치태그 --> 
       	 <result property="locationTagName" column="locationtag_name"	 jdbcType="VARCHAR" />
      	 <result property="xCoordinate" 	column="x_coordinate" 		 jdbcType="NUMERIC" />
@@ -41,7 +41,7 @@
 	
 	
 	<!-- SQL : INSERT :: POST TABLE 등록-->
-	  <insert id="addPost" parameterType="post">
+	  <insert id="addPost" parameterType="com.wthealth.domain.Post">
 	    INSERT INTO
 	    	post(post_no, title, video, contents, photo, category, post_date)
 	    VALUES
@@ -53,7 +53,7 @@
 	  </insert>
 	  
 	<!-- SQL : INSERT :: EX_INFO TABLE 등록-->  
-	  <insert id="addExInfo" parameterType="post">
+	  <insert id="addExInfo" parameterType="com.wthealth.domain.Post">
 	    INSERT INTO
 	    	ex_info
 	    VALUES
@@ -72,7 +72,7 @@
 	 </select>
   
  	<!-- SQL : UPDATE :: 게시물 수정  -->
-	 <update 	id="updatePost"	parameterType="post">
+	 <update 	id="updatePost"	parameterType="com.wthealth.domain.Post">
 		UPDATE post
          <set>
   			title = #{title}, 
@@ -85,7 +85,7 @@
     </update>
 
  	<!-- SQL : UPDATE :: 운동정보게시물 수정  -->
-	 <update 	id="updateExInfo"	parameterType="post">
+	 <update 	id="updateExInfo"	parameterType="com.wthealth.domain.Post">
 		UPDATE ex_info			
          <set>
   			exCalorie = #{ex_calorie}, 
@@ -97,7 +97,7 @@
     </update>
 	 
 		 
-	<select  id="listExInfo"  parameterType="search"	resultMap="exInfoSelectMap">
+	<select  id="listExInfo"  parameterType="com.wthealth.common.Search"	resultMap="exInfoSelectMap">
 	  	SELECT *
 	  	FROM (	SELECT inner_table.*, ROWNUM AS row_seq
 	  			FROM (	SELECT 
@@ -126,7 +126,7 @@
 	   WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum} 
 	 </select>
 
-	 <select  id="getTotalCount"  parameterType="search"	 resultType="int">
+	 <select  id="getTotalCount"  parameterType="com.wthealth.common.Search"	 resultType="int">
 	  	SELECT COUNT(*)
 	  	FROM(	SELECT 
 	  				user_id, nickname, reg_date, user_status_code 

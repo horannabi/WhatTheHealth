@@ -9,7 +9,7 @@
  	
  	
 	<resultMap id="hashTagSelectMap" type="com.wthealth.domain.HashTag">
-		<result property="hashTagNo" 			column="hashtag_no" 					jdbcType="INTEGER"/>
+		<result property="hashTagNo" 			column="hashtag_no" 					jdbcType="NUMERIC"/>
 		<result property="hashTag"				column="hashtag" 						jdbcType="VARCHAR" />
 		<result property="postNo" 				column="post_no" 						jdbcType="VARCHAR" />
 	</resultMap>

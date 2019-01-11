@@ -20,10 +20,10 @@
 		<result property="holder" 				column="holder" 					jdbcType="VARCHAR" />
 		<result property="bankName" 				column="bank_name" 					jdbcType="VARCHAR" />
 		<result property="accountNum" 				column="account_num" 					jdbcType="VARCHAR" />
-		<result property="claimCount" 				column="claim_count" 					jdbcType="INTEGER" />
+		<result property="claimCount" 				column="claim_count" 					jdbcType="NUMERIC" />
 		<result property="role" 				column="role" 					jdbcType="VARCHAR" />
 		<result property="userStatus" 				column="user_status_code" 					jdbcType="VARCHAR" />
-		<result property="havingPoint" 				column="having_point" 					jdbcType="INTEGER" />
+		<result property="havingPoint" 				column="having_point" 					jdbcType="NUMERIC" />
 		<result property="snsType" 				column="sns_type_code" 					jdbcType="VARCHAR" />
 		<result property="idToken" 				column="id_token" 					jdbcType="VARCHAR" />
 		<result property="accessToken" 				column="access_token" 					jdbcType="VARCHAR" />

@@ -9,7 +9,7 @@ import com.wthealth.domain.DietSchedule;
 import com.wthealth.service.dietschedule.DietScheduleDao;
 import com.wthealth.service.dietschedule.DietScheduleService;
 
-@Service("DietScheduleServiceImpl")
+@Service("dietScheduleServiceImpl")
 public class DietScheduleServiceImpl implements DietScheduleService {
 
 	///Field

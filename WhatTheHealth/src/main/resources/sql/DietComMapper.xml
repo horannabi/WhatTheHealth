@@ -13,15 +13,15 @@
 		<result property="contents" column="contents" jdbcType="VARCHAR" />
 		<result property="photo" column="photo" jdbcType="VARCHAR" />
 		<result property="video" column="video" jdbcType="VARCHAR" />
-		<result property="clickCount" column="click_count" jdbcType="INTEGER" />
+		<result property="clickCount" column="click_count" jdbcType="NUMERIC" />
 		<result property="blindStatus" column="blind_status" jdbcType="VARCHAR" />
 		<result property="deleteStatus" column="delete_status"
 			jdbcType="VARCHAR" />
-		<result property="likeCount" column="like_count" jdbcType="INTEGER" />
+		<result property="likeCount" column="like_count" jdbcType="NUMERIC" />
 		<result property="category" column="category" jdbcType="VARCHAR" />
 		<result property="postDate" column="post_date" jdbcType="DATE" />
-		<result property="exScNo" column="ex_sc_no" jdbcType="INTEGER" />
-		<result property="dietScNo" column="diet_sc_no" jdbcType="INTEGER" />
+		<result property="exScNo" column="ex_sc_no" jdbcType="NUMERIC" />
+		<result property="dietScNo" column="diet_sc_no" jdbcType="NUMERIC" />
 		<result property="locationTagName" column="locationtag_name"
 			jdbcType="VARCHAR" />
 		<result property="xCoordinate" column="x_coordinate" jdbcType="NUMERIC" />
@@ -44,7 +44,7 @@
 		#{photo:VARCHAR},
 		#{video:VARCHAR}, 0, '0', '0', 0,
 		#{category:VARCHAR}, SYSDATE,
-		#{dietScNo:INTEGER}, #{locationTagName:VARCHAR}, #{xCoordinate:NUMERIC},
+		#{dietScNo:NUMERIC}, #{locationTagName:VARCHAR}, #{xCoordinate:NUMERIC},
 		#{yCoordinate:NUMERIC},
 		#{address:VARCHAR})
 	</insert>
@@ -73,14 +73,14 @@
 			photo = #{photo:VARCHAR},
 			video =
 			#{video:VARCHAR},
-			click_count = #{clickCount:INTEGER},
+			click_count = #{clickCount:NUMERIC},
 			blind_status =
 			#{blindStatus:VARCHAR},
 			delete_status = #{deleteStatus:VARCHAR},
-			like_count = #{likeCount:INTEGER},
+			like_count = #{likeCount:NUMERIC},
 			category = #{category:VARCHAR},
 			post_date = #{postDate:DATE},
-			diet_sc_no = #{dietScNo:INTEGER},
+			diet_sc_no = #{dietScNo:NUMERIC},
 			locationtag_name = #{locationTagName:VARCHAR},
 			x_coordinate =
 			#{xCoordinate:NUMERIC},
@@ -93,7 +93,7 @@
 
 	<!-- SQL : SELECT LIST -->
 	<select id="listDietCom" resultMap="postSelectMap"
-		parameterType="search">
+		parameterType="com.wthealth.common.Search">
 		SELECT *
 		FROM ( SELECT inner_table.* , ROWNUM AS row_seq
 		FROM ( SELECT *
@@ -130,7 +130,7 @@
 
 	<!-- SQL : SELECT LIST -->
 	<select id="listExComRecom" resultMap="postSelectMap"
-		parameterType="search">
+		parameterType="com.wthealth.common.Search">
 		SELECT *
 		FROM post
 		WHERE post_no LIKE 'EC%'
@@ -139,7 +139,7 @@
 	</select>
 	
 	<!-- SQL : SELECT LIST -->
-	<select id="listDietComRecom" resultMap="postSelectMap" parameterType="search">
+	<select id="listDietComRecom" resultMap="postSelectMap" parameterType="com.wthealth.common.Search">
 		SELECT *
 		FROM	post
 		WHERE	post_no LIKE 'DC%'
@@ -147,7 +147,7 @@
 	</select>
 	
 	<!-- SQL : SELECT ROW Count -->
-	<select id="getTotalCount" parameterType="search" resultType="int">
+	<select id="getTotalCount" parameterType="com.wthealth.common.Search" resultType="int">
 		SELECT COUNT(*)
 		FROM( SELECT *
 		FROM post

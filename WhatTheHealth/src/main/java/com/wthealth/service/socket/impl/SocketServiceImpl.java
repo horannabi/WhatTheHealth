@@ -17,7 +17,7 @@ import com.wthealth.service.socket.SocketService;
 public class SocketServiceImpl implements SocketService {
 	///Field
 	@Autowired
-	@Qualifier("socketServiceImpl")
+	@Qualifier("socketDaoImpl")
 	private SocketDao socketDao;
 	public void setSocketDao(SocketDao socketDao) {
 		this.socketDao = socketDao;
