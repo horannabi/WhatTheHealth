@@ -1,13 +1,15 @@
 package com.wthealth.service.socket.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.wthealth.common.Search;
-import com.wthealth.domain.Live;
+import com.wthealth.domain.Socket;
 import com.wthealth.service.socket.SocketDao;
 import com.wthealth.service.socket.SocketService;
 
@@ -23,42 +25,45 @@ public class SocketServiceImpl implements SocketService {
 
 	///Constructor
 	public SocketServiceImpl() {
-		// TODO Auto-generated constructor stub
+		System.out.println(this.getClass());
 	}
 
 	///Method
 	@Override
-	public void addLiveStream(Live live) throws Exception {
-		// TODO Auto-generated method stub
-
+	public void addLiveStream(Socket socket) throws Exception {
+		socketDao.addLiveStream(socket);
 	}
 
 	@Override
-	public Live getLiveStream(int liveNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public Socket getLiveStream(int liveNo) throws Exception {
+		return socketDao.getLiveStream(liveNo);
 	}
 
 	@Override
 	public void deleteLiveStream(int liveNo) throws Exception {
+		socketDao.deleteLiveStream(liveNo);
+	}
+
+	@Override
+	public Map<String, Object> listLiveStream(Search search) throws Exception {
+		List<Socket> list = socketDao.listLiveStream(search);
+		int totalCount = socketDao.getTotalCount(search);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list );
+		map.put("totalCount", new Integer(totalCount));
+		
+		return map;
+	}
+
+	/*@Override
+	public void addBattleStream(Socket socket) throws Exception {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public List<Live> listLiveStream(Search search) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void addBattleStream(Live live) throws Exception {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Live getBattleStream(int liveNo) throws Exception {
+	public Socket getBattleStream(int liveNo) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -73,6 +78,6 @@ public class SocketServiceImpl implements SocketService {
 	public void addPlayer(String userId) throws Exception {
 		// TODO Auto-generated method stub
 
-	}
+	}*/
 
 }

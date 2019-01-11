@@ -7,11 +7,12 @@ public class DietSchedule {
 
 	private int dietScNo;
 	private String userId;
-	private List<String> food;
+	private List<Food> food;
 	private Date dietScDate;
 	private double bmi;
 	private int dietScCalorie;
 	private String mealTime;
+	private int weight;
 	/**
 	 * 
 	 */
@@ -29,10 +30,10 @@ public class DietSchedule {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public List<String> getFood() {
+	public List<Food> getFood() {
 		return food;
 	}
-	public void setFood(List<String> food) {
+	public void setFood(List<Food> food) {
 		this.food = food;
 	}
 	public Date getDietScDate() {
@@ -58,6 +59,18 @@ public class DietSchedule {
 	}
 	public void setMealTime(String mealTime) {
 		this.mealTime = mealTime;
+	}
+	public int getWeight() {
+		return weight;
+	}
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+	@Override
+	public String toString() {
+		return "DietSchedule [dietScNo=" + dietScNo + ", userId=" + userId + ", food=" + food + ", dietScDate="
+				+ dietScDate + ", bmi=" + bmi + ", dietScCalorie=" + dietScCalorie + ", mealTime=" + mealTime
+				+ ", weight=" + weight + "]";
 	}
 	
 	

@@ -1,5 +1,18 @@
 package com.wthealth.service.adminmanage;
 
-public interface AdminManageDao {
+import java.util.List;
 
+import com.wthealth.common.Search;
+import com.wthealth.domain.Point;
+import com.wthealth.domain.User;
+
+public interface AdminManageDao {
+	
+	public List<User> listUserAdminManage(Search search) throws Exception;
+	
+	public User getAdminManage(String userId) throws Exception;
+	
+	public void updateUserAdminManage(User user) throws Exception;
+	
+	public int getTotalCount(Search search) throws Exception ; 
 }
