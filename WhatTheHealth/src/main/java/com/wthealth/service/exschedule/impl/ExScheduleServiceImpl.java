@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.wthealth.domain.ExSchedule;
 import com.wthealth.service.exschedule.ExScheduleDao;
 import com.wthealth.service.exschedule.ExScheduleService;
 
@@ -27,39 +28,39 @@ public class ExScheduleServiceImpl implements ExScheduleService {
 
 	///Method
 	@Override
-	public void addExSchedule() throws Exception {
+	public void addExSchedule(ExSchedule exSchedule) throws Exception {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public void getSchedule() throws Exception {
+	public void getSchedule(int exScNo) throws Exception {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public void updateExSchedule() throws Exception {
+	public void updateExSchedule(ExSchedule exSchedule) throws Exception {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public void listExSchedule() throws Exception {
+	public void listExSchedule(String userId) throws Exception {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public void getExHistoryChart() throws Exception {
+	public void getExHistoryChart(String userId) throws Exception {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public void deleteExSchedule() throws Exception {
+	public void deleteExSchedule(int exScNo) throws Exception {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 }

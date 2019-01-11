@@ -1,9 +1,15 @@
 package com.wthealth.service.claim.impl;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.wthealth.common.Search;
+import com.wthealth.domain.Claim;
 import com.wthealth.service.claim.ClaimDao;
 import com.wthealth.service.claim.ClaimService;
 
@@ -24,22 +30,31 @@ public class ClaimServiceImpl implements ClaimService {
 	}
 
 	///Method
+	
 	@Override
-	public void listClaim() throws Exception {
-		// TODO Auto-generated method stub
+	public int addClaim(Claim claim) throws Exception {
+		
+		return claimDao.addClaim(claim);
 
 	}
-
+ 
 	@Override
-	public void addClaim() throws Exception {
-		// TODO Auto-generated method stub
-
+	public int updateClaim(Claim claim) throws Exception {
+		
+		return claimDao.updateClaim(claim);
+		
 	}
-
 	@Override
-	public void updateClaim() throws Exception {
-		// TODO Auto-generated method stub
-
+	public Map<String, Object> listClaim(Search search) throws Exception {
+		List<Claim> list = claimDao.listClaim(search);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list);
+		return map;
+	}
+	@Override
+	public Claim getClaim(int claimNo) throws Exception {
+	
+		return claimDao.getClaim(claimNo);
 	}
 
 }

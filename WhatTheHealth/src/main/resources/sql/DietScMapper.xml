@@ -27,7 +27,7 @@
 	<insert 	id="addDietSchedule"		parameterType="com.wthealth.domain.DietSchedule" >
 	 	INSERT
 		INTO diet_sc( diet_sc_no , user_id , diet_sc_date , meal_time , bmi_value, weight, delete_status) 
-		VALUES	 (	seq_diet_sc_diet_sc_no.NEXTVAL , #{userId} , #{dietScDate}, #{mealTime}, #{bmi} , #{weight},'0' )
+		VALUES	 (	seq_diet_sc_diet_sc_no.NEXTVAL , #{userId} , sysdate, #{mealTime}, #{bmi} , #{weight},'0' )
 	 </insert>
 	 <!-- SQL : INSERT MEAL-->
 	 <insert 	id="addMeal"		parameterType="com.wthealth.domain.Food" >
@@ -42,6 +42,12 @@
 		m.food_name, m.food_claorie, m.amount_food, d.bmi_value, d.weight
 		FROM meal m, diet_sc d 
 		WHERE m.diet_sc_no = d.diet_sc_no AND d.mealTime= #{mealTime} AND m.diet_sc_no = #{diet_sc_no}
+	 </select>
+	 
+	 <select id="getDietScNo" parameterType="com.wthealth.domain.DietSchedule" resultMap="dietScSelectMap">
+	 	SELECT diet_sc_no
+	 	FROM diet_sc
+	 	WHERE diet_sc_date= #{dietScDate:DATE} AND meal_time = #{mealTime:VARCHAR}  AND user_id=#{userId}
 	 </select>
 	 
 	 <!-- SQL : DELETE -->

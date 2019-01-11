@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.wthealth.domain.HashTag;
 import com.wthealth.service.hashtag.HashTagDao;
 import com.wthealth.service.hashtag.HashTagService;
 
@@ -24,22 +25,21 @@ public class HashTagServiceImpl implements HashTagService {
 	}
 
 	///Method
+	
 	@Override
-	public void addHashTag() throws Exception {
+	public void addHashTag(HashTag hashTag) throws Exception {
 		// TODO Auto-generated method stub
-
+		
 	}
-
 	@Override
-	public void getHashTag() throws Exception {
+	public void getHashTag(String hashTag) throws Exception {
 		// TODO Auto-generated method stub
-
+		
 	}
-
 	@Override
-	public void updateHashTag() throws Exception {
+	public void updateHashTag(HashTag hashTag) throws Exception {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 }

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.wthealth.domain.HashTag;
 import com.wthealth.service.hashtag.HashTagDao;
 
 @Repository("hashTagDaoImpl")
@@ -25,21 +26,21 @@ public class HashTagDaoImpl implements HashTagDao {
 
 	///Method
 	@Override
-	public void addHashTag() throws Exception {
+	public void addHashTag(HashTag hashTag) throws Exception {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public void getHashTag() throws Exception {
+	public void getHashTag(String hashTag) throws Exception {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public void updateHashTag() throws Exception {
+	public void updateHashTag(HashTag hashTag) throws Exception {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 }

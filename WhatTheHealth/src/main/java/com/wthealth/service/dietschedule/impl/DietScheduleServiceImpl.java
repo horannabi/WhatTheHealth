@@ -1,11 +1,14 @@
 package com.wthealth.service.dietschedule.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.wthealth.domain.BMI;
 import com.wthealth.domain.DietSchedule;
+import com.wthealth.domain.Food;
 import com.wthealth.service.dietschedule.DietScheduleDao;
 import com.wthealth.service.dietschedule.DietScheduleService;
 
@@ -30,13 +33,14 @@ public class DietScheduleServiceImpl implements DietScheduleService {
 	///Method
 	@Override
 	public void addDietSchedule(DietSchedule dietSchedule) throws Exception {
-		// TODO Auto-generated method stub
+		dietScheduleDao.addDietSchedule(dietSchedule);
 		
 	}
 
 	@Override
-	public void getDietSchedule(int dietScNo) throws Exception {
-		// TODO Auto-generated method stub
+	public DietSchedule getDietSchedule(int dietScNo) throws Exception {
+		return dietScheduleDao.getDietSchedule(dietScNo);
+		
 		
 	}
 
@@ -47,7 +51,7 @@ public class DietScheduleServiceImpl implements DietScheduleService {
 	}
 
 	@Override
-	public void updateDietSchedule(DietSchedule dietSchedule, String userId) throws Exception {
+	public void updateDietSchedule(DietSchedule dietSchedule) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
@@ -67,6 +71,18 @@ public class DietScheduleServiceImpl implements DietScheduleService {
 	@Override
 	public void addBmi(BMI bmi) throws Exception {
 		// TODO Auto-generated method stub
+		
+	}
+ 
+	@Override
+	public DietSchedule getDietScNo(DietSchedule dietSchedule) throws Exception {
+		// TODO Auto-generated method stub
+		return dietScheduleDao.getDietScNo(dietSchedule);
+	}
+
+	@Override
+	public void addMeal(Food food) throws Exception {
+		dietScheduleDao.addMeal(food);
 		
 	}
 
