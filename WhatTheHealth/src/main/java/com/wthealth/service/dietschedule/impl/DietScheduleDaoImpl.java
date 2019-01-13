@@ -20,7 +20,7 @@ public class DietScheduleDaoImpl implements DietScheduleDao {
 	private SqlSession sqlSession;
 	public void setSqlSession(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
-	}
+	} 
 	
 	///Constructor
 	public DietScheduleDaoImpl() {
@@ -34,7 +34,7 @@ public class DietScheduleDaoImpl implements DietScheduleDao {
 		return sqlSession.selectOne("DietScMapper.getDietSchedule", dietScNo);
 		
 	}
-
+ 
 	@Override
 	public List<DietSchedule> listDietSchedule(String userId) throws Exception {
 		return null;
@@ -43,20 +43,34 @@ public class DietScheduleDaoImpl implements DietScheduleDao {
 	}
 
 	@Override
-	public int updateDietSchedule(DietSchedule dietSchedule) throws Exception {
-		return sqlSession.update("DietScMapper.updateDietSchedule", dietSchedule);
+	public void updateDietSchedule(DietSchedule dietSchedule) throws Exception {
+		System.out.println("dndofnodnfodnofdno"+dietSchedule);
+		sqlSession.update("DietScMapper.updateDietSchedule", dietSchedule);
+		sqlSession.delete("DietScMapper.deleteMeal", dietSchedule.getDietScNo());
+		System.out.println("Çªµå»çÀÌÁî"+dietSchedule.getFood().size());
+		System.out.println("¼º¹ÎÀÖ´Â Çªµå"+dietSchedule.getFood().get(1));
+		for (int i = 0; i < dietSchedule.getFood().size(); i++) {
+			Food food = dietSchedule.getFood().get(i);
+			sqlSession.insert("DietScMapper.addMeal", food);
+		}
 		
 	}
 
-	@Override
+	/*@Override
 	public int addDietSchedule(DietSchedule dietSchedule) throws Exception {
 		return sqlSession.insert("DietScMapper.addDietSchedule", dietSchedule);
 		 //sqlSession.selectOne("DietScMapper.getDietSchedleNo", dietSchedule);
+	}*/
+	@Override
+	public void addDietSchedule(DietSchedule dietSchedule) throws Exception {
+		sqlSession.insert("DietScMapper.addDietSchedule", dietSchedule);
+		 //sqlSession.selectOne("DietScMapper.getDietSchedleNo", dietSchedule);
 	}
+
 
 	@Override
 	public void deleteDietSchedule(int dietScNo) throws Exception {
-		// TODO Auto-generated method stub
+		sqlSession.update("DietScMapper.deleteDietSchedule", dietScNo);
 		
 	}
 	
@@ -79,7 +93,7 @@ public class DietScheduleDaoImpl implements DietScheduleDao {
 
 	@Override
 	public DietSchedule getDietScNo(DietSchedule dietSchedule) {
-		// TODO Auto-generated method stub
+		
 		return sqlSession.selectOne("DietScMapper.getDietScNo", dietSchedule);
 	}
 

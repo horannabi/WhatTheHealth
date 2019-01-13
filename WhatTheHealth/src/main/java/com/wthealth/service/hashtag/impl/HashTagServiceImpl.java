@@ -1,9 +1,14 @@
 package com.wthealth.service.hashtag.impl;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.wthealth.common.Search;
 import com.wthealth.domain.HashTag;
 import com.wthealth.service.hashtag.HashTagDao;
 import com.wthealth.service.hashtag.HashTagService;
@@ -28,17 +33,21 @@ public class HashTagServiceImpl implements HashTagService {
 	
 	@Override
 	public void addHashTag(HashTag hashTag) throws Exception {
-		// TODO Auto-generated method stub
+		hashTagDao.addHashTag(hashTag);
+	}
+	
+	@Override
+	public Map<String , Object > listHashTag(Search search) throws Exception {
+		 List<HashTag> list = hashTagDao.listHashTag(search);
+		 
+		 Map<String, Object> map = new HashMap<String, Object>();
+		 map.put("list", list);
+		return map;
 		
 	}
 	@Override
-	public void getHashTag(String hashTag) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void updateHashTag(HashTag hashTag) throws Exception {
-		// TODO Auto-generated method stub
+	public void updateHashTag(List<HashTag> hashTag) throws Exception {
+		hashTagDao.updateHashTag(hashTag);
 		
 	}
 

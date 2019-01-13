@@ -1,8 +1,8 @@
-package com.wthealth.service.dietschedule.test;
+package com.wthealth.service.exschedule.test;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -12,11 +12,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.wthealth.common.Search;
-import com.wthealth.domain.Claim;
 import com.wthealth.domain.DietSchedule;
+import com.wthealth.domain.ExSchedule;
 import com.wthealth.domain.Food;
-import com.wthealth.service.dietschedule.DietScheduleService;
+import com.wthealth.service.exschedule.ExScheduleService;
 
 /*
  *	FileName :  UserServiceTest.java
@@ -31,18 +30,42 @@ import com.wthealth.service.dietschedule.DietScheduleService;
 		"classpath:config/context-aspect.xml",
 		"classpath:config/context-mybatis.xml",
 		"classpath:config/context-transaction.xml" })
-public class DietScServiceTest {
+public class ExScServiceTest {
 
 	//==>@RunWith,@ContextConfiguration 이용 Wiring, Test 할 instance DI
 	@Autowired
-	@Qualifier("dietScheduleServiceImpl")
-	private DietScheduleService dietScheduleService;
+	@Qualifier("exScheduleServiceImpl")
+	private ExScheduleService exScheduleService;
 
 	//@Test
-	public void testAddDietSc() throws Exception {
+	public void testAddExSc() throws Exception {
+		
+
+		
+		ExSchedule exSchedule = new ExSchedule();
+		
+		exSchedule.setExScCalorie(150);
+		exSchedule.setExScContents("죽여주네요");
+		exSchedule.setExScName("물구나무");
+		exSchedule.setUserId("testUser");
+		
+		exScheduleService.addExSchedule(exSchedule); 
+
+		//==> console 확인
+		System.out.println("test쪽"+exSchedule);
+		
+		//==> API 확인
+		Assert.assertEquals(150, exSchedule.getExScCalorie());
+		Assert.assertEquals("죽여주네요", exSchedule.getExScContents());
+		Assert.assertEquals("물구나무", exSchedule.getExScName());
+		Assert.assertEquals("testUser", exSchedule.getUserId());
+	}
+	
+	/*//@Test
+	public void testAddMeal() throws Exception {
 		
 		Food food1 = new Food();
-		food1.setAmountFood(500); 
+		food1.setAmountFood(500);
 		food1.setFoodCalorie(500);
 		food1.setFoodName("바나나");
 		
@@ -62,49 +85,9 @@ public class DietScServiceTest {
 		
 		dietSchedule.setUserId("testUser");
 		dietSchedule.setBmi(25);
+	
 		dietSchedule.setMealTime("2");
 		dietSchedule.setWeight(170);
-		
-		dietScheduleService.addDietSchedule(dietSchedule); 
-
-		//==> console 확인
-		System.out.println("test쪽"+dietSchedule.getDietScNo());
-		
-		//==> API 확인
-		Assert.assertEquals("testUser", dietSchedule.getUserId());
-	
-		Assert.assertEquals(25, (int)dietSchedule.getBmi());
-		Assert.assertEquals("2", dietSchedule.getMealTime());
-		Assert.assertEquals(170, dietSchedule.getWeight());
-	}
-	
-	@Test
-	public void testAddMeal() throws Exception {
-		
-		Food food1 = new Food();
-		food1.setAmountFood(500);
-		food1.setFoodCalorie(500);
-		food1.setFoodName("치킨");
-		
-		Food food2 = new Food();
-		food2.setAmountFood(100);
-		food2.setFoodCalorie(1500);
-		food2.setFoodName("피자");
-		
-		List<Food> food = new ArrayList<Food>();
-		
-		
-		food.add(food1);
-		food.add(food2);
-		
-		
-		DietSchedule dietSchedule = new DietSchedule();
-		
-		dietSchedule.setUserId("testUser");
-		dietSchedule.setBmi(125);
-	
-		dietSchedule.setMealTime("2");
-		dietSchedule.setWeight(1720);
 		dietScheduleService.addDietSchedule(dietSchedule);
 		System.out.println("다이어트스케줄넘버"+dietSchedule.getDietScNo());
 		System.out.println("푸드1번"+food.get(1).getFoodName());
@@ -117,16 +100,18 @@ public class DietScServiceTest {
 		//==> API 확인
 		Assert.assertEquals(500, food1.getAmountFood());
 		Assert.assertEquals(500, food1.getFoodCalorie());
-		Assert.assertEquals("치킨", food1.getFoodName());
+		Assert.assertEquals("바나나", food1.getFoodName());
 		Assert.assertEquals(dietSchedule.getDietScNo(), food1.getDietScNo());
 		
 		
 	}
+	*/
+	
 	
 	//@Test
-/*	public void testGetProduct() throws Exception {
+	public void testGetExSChedule() throws Exception {
 		
-		Product product = new Product();
+		ExSchedule exSchedule = new ExSchedule();
 		//==> 필요하다면...
 		//user.setUserId("testUserId");
 		//user.setUserName("testUserName");
@@ -136,100 +121,42 @@ public class DietScServiceTest {
 		//user.setAddr("경기도");
 		//user.setEmail("test@test.com");
 		
-		product = productService.getProduct(10066);
+		exSchedule = exScheduleService.getExSchedule(10026);
 
 		//==> console 확인
-		System.out.println(product);
+		System.out.println(exSchedule);
 		
 		//==> API 확인
 		
-		Assert.assertEquals("testProductName", product.getProdName());
-		Assert.assertEquals("testProdDetail", product.getProdDetail());
-		Assert.assertEquals("20181018", product.getManuDate());
-		Assert.assertEquals(1000000, product.getPrice());
-		Assert.assertEquals("testProductFile", product.getFileName());
-
-		Assert.assertNotNull(productService.getProduct(10020));
-		Assert.assertNotNull(productService.getProduct(10021));
+		Assert.assertEquals(150, exSchedule.getExScCalorie());
+		Assert.assertEquals("죽여주네요", exSchedule.getExScContents());
+		Assert.assertEquals("물구나무", exSchedule.getExScName());
+		Assert.assertEquals("testUser", exSchedule.getUserId());
 		
 	}
-	*/
+	
 	
 	//@Test
-	 public void testUpdateDietSc() throws Exception{
-		 
-		Food food1 = new Food();
-		food1.setAmountFood(500);
-		food1.setFoodCalorie(500);
-		food1.setFoodName("성민");
-		food1.setDietScNo(10046);
-		
-		Food food2 = new Food();
-		food2.setAmountFood(100);
-		food2.setFoodCalorie(1500);
-		food2.setFoodName("소곱창");
-		food2.setDietScNo(10046);
-		
-		List<Food> food = new ArrayList<Food>();
-		
-		
-		food.add(food1);
-		food.add(food2);
-		
-		
-		DietSchedule dietSchedule = dietScheduleService.getDietSchedule(10046);
-		Assert.assertNotNull(dietSchedule); 
-		/*
-		Assert.assertEquals("testUser2", claim.getClaimedUserId());
-		Assert.assertEquals("0", claim.getClaimSortNo());
-		Assert.assertEquals("0", claim.getClaimStatus());
-		Assert.assertEquals("DC10000", claim.getTargetNo());
-		Assert.assertEquals("testUser", claim.getUserId());
-		Assert.assertEquals("0", claim.getClaimReasonNo());*/
-		
-		dietSchedule.setBmi(137);
-		System.out.println("이거볼라고한거다"+dietSchedule.getFood());
-		dietSchedule.setFood(food);
-		System.out.println("이거볼라고한거다2"+dietSchedule.getFood());
-		
-		dietScheduleService.updateDietSchedule(dietSchedule);
-		
-		dietSchedule = dietScheduleService.getDietSchedule(10045);
-		Assert.assertNotNull(dietSchedule);	
-		
-		//==> console 확인
-		
+	 public void testUpdateExSc() throws Exception{
+		 ExSchedule exSchedule = exScheduleService.getExSchedule(10026);
 			
-		//==> API 확인
-		Assert.assertEquals(137, (int)dietSchedule.getBmi());
-		//Assert.assertEquals("성민", dietSchedule.getFood().get(1));
-
+			exSchedule.setExScCalorie(150);
+			exSchedule.setExScContents("발라버려");
+			exSchedule.setExScName("땅강아지");
+			exSchedule.setUserId("testUser");
+			exScheduleService.updateExSchedule(exSchedule); 
 		
 	
+		System.out.println(exSchedule);
+		Assert.assertNotNull(exSchedule); 
 		
-		
-		
-		/*dietSchedule.setUserId("testUser");
-		dietSchedule.setBmi(25);
-	
-		dietSchedule.setMealTime("2");
-		dietSchedule.setWeight(170);
-		
-		dietScheduleService.addDietSchedule(dietSchedule); 
-
-		//==> console 확인
-		System.out.println("test쪽"+dietSchedule.getDietScNo());
-		
-		//==> API 확인
-		Assert.assertEquals("testUser", dietSchedule.getUserId());
-	
-		Assert.assertEquals(25, (int)dietSchedule.getBmi());
-		Assert.assertEquals("2", dietSchedule.getMealTime());
-		Assert.assertEquals(170, dietSchedule.getWeight());
-	*/}
+		Assert.assertEquals(150, exSchedule.getExScCalorie());
+		Assert.assertEquals("발라버려", exSchedule.getExScContents());
+		Assert.assertEquals("땅강아지", exSchedule.getExScName());
+		Assert.assertEquals("testUser", exSchedule.getUserId());
 	
 	 }
-	 
+		
 	 /*
 	 //==>  주석을 풀고 실행하면....
 	 @Test
@@ -268,42 +195,21 @@ public class DietScServiceTest {
 	 	System.out.println("product list all 3개 당 리스트 갯수 : "+totalCount);
 	 }
 	 */
-	 /*
-	//@Test
-		 public void testGetProductListByProductN0() throws Exception{
+	
+	@Test
+		 public void deleteExSchedule() throws Exception{
 			 
-		 	Search search = new Search();
-		 	search.setCurrentPage(1);
-		 	search.setPageSize(3);
-		 	search.setSearchCondition("0");
-		 	search.setSearchKeyword("10042");
-		 	Map<String,Object> map = productService.getProductList(search);
+		 	ExSchedule exSchedule = exScheduleService.getExSchedule(10026);
+		 	Assert.assertNotNull(exSchedule); 
 		 	
-		 	List<Object> list = (List<Object>)map.get("list");
-		 	Assert.assertEquals(1, list.size());
 		 	
 			//==> console 확인
-		 	System.out.println(list);
 		 	
-		 	Integer totalCount = (Integer)map.get("totalCount");
-		 	System.out.println(totalCount);
-		 	
-		 	System.out.println("=======================================");
-		 	
-		 	//search.setSearchCondition("1");
-		 	//search.setSearchKeyword("상품");	//현재시간 왜 입력?
-		 	//map = productService.getProductList(search);
-		 	
-		 	//list = (List<Object>)map.get("list");
-		 	//Assert.assertEquals(3, list.size());
-		 	
-			//==> console 확인
-		 	//System.out.println(list);
-		 	
-		 	//totalCount = (Integer)map.get("totalCount");
-		 	//System.out.println(totalCount);
+		 	exScheduleService.deleteExSchedule(10026);
+		 	System.out.println("12312312312"+exSchedule);
+		 	Assert.assertEquals("1", exSchedule.getDeleteStatus());
 		 }
-	 
+		 /*
 	 @Test
 	 public void testGetProductListByProductName() throws Exception{
 		 
@@ -375,3 +281,4 @@ public class DietScServiceTest {
 	 	System.out.println(totalCount);
 	 }	 */
 	 
+}

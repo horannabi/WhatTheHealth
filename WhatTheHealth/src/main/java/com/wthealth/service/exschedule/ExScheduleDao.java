@@ -6,7 +6,7 @@ public interface ExScheduleDao {
 
 	public void addExSchedule(ExSchedule exSchedule) throws Exception;
 	
-	public void getSchedule(int exScNo) throws Exception;
+	public ExSchedule getExSchedule(int exScNo) throws Exception;
 	
 	public void updateExSchedule(ExSchedule exSchedule) throws Exception; 
 	

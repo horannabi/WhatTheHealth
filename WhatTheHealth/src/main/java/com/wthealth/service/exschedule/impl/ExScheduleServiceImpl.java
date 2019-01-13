@@ -15,7 +15,7 @@ public class ExScheduleServiceImpl implements ExScheduleService {
 	@Autowired
 	@Qualifier("exScheduleDaoImpl")
 	private ExScheduleDao exScheduleDao;
-	
+	 
 	
 	///Constructor
 	public void setExScheduleDao(ExScheduleDao exScheduleDao) {
@@ -29,19 +29,17 @@ public class ExScheduleServiceImpl implements ExScheduleService {
 	///Method
 	@Override
 	public void addExSchedule(ExSchedule exSchedule) throws Exception {
-		// TODO Auto-generated method stub
-		
+		exScheduleDao.addExSchedule(exSchedule);		
 	}
 
 	@Override
-	public void getSchedule(int exScNo) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public ExSchedule getExSchedule(int exScNo) throws Exception {
+		return exScheduleDao.getExSchedule(exScNo);		
 	}
 
 	@Override
 	public void updateExSchedule(ExSchedule exSchedule) throws Exception {
-		// TODO Auto-generated method stub
+		exScheduleDao.updateExSchedule(exSchedule);
 		
 	}
 
@@ -59,7 +57,7 @@ public class ExScheduleServiceImpl implements ExScheduleService {
 
 	@Override
 	public void deleteExSchedule(int exScNo) throws Exception {
-		// TODO Auto-generated method stub
+		exScheduleDao.deleteExSchedule(exScNo);
 		
 	}
 

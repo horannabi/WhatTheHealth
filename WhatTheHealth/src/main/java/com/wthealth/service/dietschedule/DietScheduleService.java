@@ -24,6 +24,6 @@ public interface DietScheduleService {
 	
 	public DietSchedule getDietScNo(DietSchedule dietSchedule) throws Exception;
 
-	public void addMeal(Food food1) throws Exception; 
+	public int addMeal(Food food1) throws Exception; 
 	
 }

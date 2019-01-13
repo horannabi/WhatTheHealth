@@ -12,9 +12,9 @@ public interface DietScheduleDao {
 	
 	public List<DietSchedule> listDietSchedule(String userId) throws Exception;
 	
-	public int updateDietSchedule(DietSchedule dietSchedule) throws Exception;
+	public void updateDietSchedule(DietSchedule dietSchedule) throws Exception;
 	
-	public int addDietSchedule(DietSchedule dietSchedule) throws Exception;
+	public void addDietSchedule(DietSchedule dietSchedule) throws Exception;
 	
 	
 	public void deleteDietSchedule(int dietScNo) throws Exception;

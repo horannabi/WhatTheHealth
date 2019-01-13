@@ -20,7 +20,7 @@ public class DietScheduleServiceImpl implements DietScheduleService {
 	@Qualifier("dietScheduleDaoImpl")
 	private DietScheduleDao dietScheduleDao;
 	
-	
+	 
 	///Constructor
 	public void setDietScheduleDao(DietScheduleDao dietScheduleDao) {
 		this.dietScheduleDao = dietScheduleDao;
@@ -52,7 +52,7 @@ public class DietScheduleServiceImpl implements DietScheduleService {
 
 	@Override
 	public void updateDietSchedule(DietSchedule dietSchedule) throws Exception {
-		// TODO Auto-generated method stub
+		dietScheduleDao.updateDietSchedule(dietSchedule);
 		
 	}
 
@@ -81,8 +81,8 @@ public class DietScheduleServiceImpl implements DietScheduleService {
 	}
 
 	@Override
-	public void addMeal(Food food) throws Exception {
-		dietScheduleDao.addMeal(food);
+	public int addMeal(Food food) throws Exception {
+		return dietScheduleDao.addMeal(food);
 		
 	}
 

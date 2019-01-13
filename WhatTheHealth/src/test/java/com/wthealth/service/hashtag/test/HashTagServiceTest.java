@@ -1,4 +1,4 @@
-package com.wthealth.service.dietschedule.test;
+package com.wthealth.service.hashtag.test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +13,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.wthealth.common.Search;
-import com.wthealth.domain.Claim;
-import com.wthealth.domain.DietSchedule;
-import com.wthealth.domain.Food;
-import com.wthealth.service.dietschedule.DietScheduleService;
+import com.wthealth.domain.HashTag;
+import com.wthealth.service.hashtag.HashTagService;
 
 /*
  *	FileName :  UserServiceTest.java
@@ -31,98 +29,46 @@ import com.wthealth.service.dietschedule.DietScheduleService;
 		"classpath:config/context-aspect.xml",
 		"classpath:config/context-mybatis.xml",
 		"classpath:config/context-transaction.xml" })
-public class DietScServiceTest {
+public class HashTagServiceTest {
 
 	//==>@RunWith,@ContextConfiguration ÀÌ¿ë Wiring, Test ÇÒ instance DI
 	@Autowired
-	@Qualifier("dietScheduleServiceImpl")
-	private DietScheduleService dietScheduleService;
+	@Qualifier("hashTagServiceImpl")
+	private HashTagService hashTagService;
 
 	//@Test
-	public void testAddDietSc() throws Exception {
+	public void testAddHashTag() throws Exception {
 		
-		Food food1 = new Food();
-		food1.setAmountFood(500); 
-		food1.setFoodCalorie(500);
-		food1.setFoodName("¹Ù³ª³ª");
+		HashTag hashTag1 = new HashTag();
+		hashTag1.setHashTag("»Ð»Ð");
+		hashTag1.setPostNo("ME10023");
 		
-		Food food2 = new Food();
-		food2.setAmountFood(100);
-		food2.setFoodCalorie(1500);
-		food2.setFoodName("¼Ò°öÃ¢");
+		HashTag hashTag2 = new HashTag();
+		hashTag2.setHashTag("»Ð»Ð");
+		hashTag2.setPostNo("EI10025");
 		
-		List<Food> food = new ArrayList<Food>();
-		
-		
-		food.add(food1);
-		food.add(food2);
+		HashTag hashTag3 = new HashTag();
+		hashTag3.setHashTag("»Ð»Ð");
+		hashTag3.setPostNo("EC10020");
 		
 		
-		DietSchedule dietSchedule = new DietSchedule();
+		List<HashTag> hashTag =new ArrayList<HashTag>();
+		hashTag.add(hashTag1);
+		hashTag.add(hashTag2);
+		hashTag.add(hashTag3);
 		
-		dietSchedule.setUserId("testUser");
-		dietSchedule.setBmi(25);
-		dietSchedule.setMealTime("2");
-		dietSchedule.setWeight(170);
-		
-		dietScheduleService.addDietSchedule(dietSchedule); 
+		for (int j = 0; j < hashTag.size(); j++) {
+			hashTagService.addHashTag(hashTag.get(j));
 
-		//==> console È®ÀÎ
-		System.out.println("testÂÊ"+dietSchedule.getDietScNo());
-		
-		//==> API È®ÀÎ
-		Assert.assertEquals("testUser", dietSchedule.getUserId());
-	
-		Assert.assertEquals(25, (int)dietSchedule.getBmi());
-		Assert.assertEquals("2", dietSchedule.getMealTime());
-		Assert.assertEquals(170, dietSchedule.getWeight());
-	}
-	
-	@Test
-	public void testAddMeal() throws Exception {
-		
-		Food food1 = new Food();
-		food1.setAmountFood(500);
-		food1.setFoodCalorie(500);
-		food1.setFoodName("Ä¡Å²");
-		
-		Food food2 = new Food();
-		food2.setAmountFood(100);
-		food2.setFoodCalorie(1500);
-		food2.setFoodName("ÇÇÀÚ");
-		
-		List<Food> food = new ArrayList<Food>();
-		
-		
-		food.add(food1);
-		food.add(food2);
-		
-		
-		DietSchedule dietSchedule = new DietSchedule();
-		
-		dietSchedule.setUserId("testUser");
-		dietSchedule.setBmi(125);
-	
-		dietSchedule.setMealTime("2");
-		dietSchedule.setWeight(1720);
-		dietScheduleService.addDietSchedule(dietSchedule);
-		System.out.println("´ÙÀÌ¾îÆ®½ºÄÉÁÙ³Ñ¹ö"+dietSchedule.getDietScNo());
-		System.out.println("Çªµå1¹ø"+food.get(1).getFoodName());
-		System.out.println("Çªµå»çÀÌÁî"+food.size());
-		for (int i = 0; i < food.size(); i++) {
-			food.get(i).setDietScNo(dietSchedule.getDietScNo());
-			dietScheduleService.addMeal((Food)food.get(i));
 		}
+		//==> console È®ÀÎ
+		System.out.println("testÂÊ"+hashTag);
 		
 		//==> API È®ÀÎ
-		Assert.assertEquals(500, food1.getAmountFood());
-		Assert.assertEquals(500, food1.getFoodCalorie());
-		Assert.assertEquals("Ä¡Å²", food1.getFoodName());
-		Assert.assertEquals(dietSchedule.getDietScNo(), food1.getDietScNo());
-		
-		
+		Assert.assertEquals("»Ð»Ð", hashTag.get(0).getHashTag());
+		Assert.assertEquals("EI10025", hashTag.get(1).getPostNo());
 	}
-	
+
 	//@Test
 /*	public void testGetProduct() throws Exception {
 		
@@ -155,119 +101,76 @@ public class DietScServiceTest {
 	}
 	*/
 	
-	//@Test
-	 public void testUpdateDietSc() throws Exception{
+	@Test
+	 public void testUpdateHashTag() throws Exception{
 		 
-		Food food1 = new Food();
-		food1.setAmountFood(500);
-		food1.setFoodCalorie(500);
-		food1.setFoodName("¼º¹Î");
-		food1.setDietScNo(10046);
-		
-		Food food2 = new Food();
-		food2.setAmountFood(100);
-		food2.setFoodCalorie(1500);
-		food2.setFoodName("¼Ò°öÃ¢");
-		food2.setDietScNo(10046);
-		
-		List<Food> food = new ArrayList<Food>();
-		
-		
-		food.add(food1);
-		food.add(food2);
-		
-		
-		DietSchedule dietSchedule = dietScheduleService.getDietSchedule(10046);
-		Assert.assertNotNull(dietSchedule); 
-		/*
-		Assert.assertEquals("testUser2", claim.getClaimedUserId());
-		Assert.assertEquals("0", claim.getClaimSortNo());
-		Assert.assertEquals("0", claim.getClaimStatus());
-		Assert.assertEquals("DC10000", claim.getTargetNo());
-		Assert.assertEquals("testUser", claim.getUserId());
-		Assert.assertEquals("0", claim.getClaimReasonNo());*/
-		
-		dietSchedule.setBmi(137);
-		System.out.println("ÀÌ°Åº¼¶ó°íÇÑ°Å´Ù"+dietSchedule.getFood());
-		dietSchedule.setFood(food);
-		System.out.println("ÀÌ°Åº¼¶ó°íÇÑ°Å´Ù2"+dietSchedule.getFood());
-		
-		dietScheduleService.updateDietSchedule(dietSchedule);
-		
-		dietSchedule = dietScheduleService.getDietSchedule(10045);
-		Assert.assertNotNull(dietSchedule);	
-		
-		//==> console È®ÀÎ
-		
-			
-		//==> API È®ÀÎ
-		Assert.assertEquals(137, (int)dietSchedule.getBmi());
-		//Assert.assertEquals("¼º¹Î", dietSchedule.getFood().get(1));
+		HashTag hashTag1 = new HashTag();
+		hashTag1.setHashTag("¶û¶û");
+		hashTag1.setPostNo("DC10000");
 
 		
-	
-		
-		
-		
-		/*dietSchedule.setUserId("testUser");
-		dietSchedule.setBmi(25);
-	
-		dietSchedule.setMealTime("2");
-		dietSchedule.setWeight(170);
-		
-		dietScheduleService.addDietSchedule(dietSchedule); 
+		HashTag hashTag2 = new HashTag();
+		hashTag2.setHashTag("ÅÊÅÊ");
+		hashTag2.setPostNo("DC10000");
 
+		
+		HashTag hashTag3 = new HashTag();
+		hashTag3.setHashTag("ÅüÅü");
+		hashTag3.setPostNo("DC10000");
+
+		
+		
+		
+		List<HashTag> hashTag =new ArrayList<HashTag>();
+		hashTag.add(hashTag1);
+		hashTag.add(hashTag2);
+		hashTag.add(hashTag3);
+		hashTagService.updateHashTag(hashTag);
+		/*for (int j = 0; j < hashTag.size(); j++) {
+			hashTag.get(j).setPostNo("DC10000");
+			hashTagService.updateHashTag(hashTag.get(j));
+
+		}*/
 		//==> console È®ÀÎ
-		System.out.println("testÂÊ"+dietSchedule.getDietScNo());
+		System.out.println("testÂÊ"+hashTag);
 		
 		//==> API È®ÀÎ
-		Assert.assertEquals("testUser", dietSchedule.getUserId());
+		Assert.assertEquals("¶û¶û", hashTag.get(0).getHashTag());
+		Assert.assertEquals("DC10000", hashTag.get(1).getPostNo());
+		
+		}
 	
-		Assert.assertEquals(25, (int)dietSchedule.getBmi());
-		Assert.assertEquals("2", dietSchedule.getMealTime());
-		Assert.assertEquals(170, dietSchedule.getWeight());
-	*/}
-	
-	 }
 	 
-	 /*
+	 
+	 
 	 //==>  ÁÖ¼®À» Ç®°í ½ÇÇàÇÏ¸é....
-	 @Test
-	 public void testGetProductListAll() throws Exception{
+	// @Test
+	 public void testListHashTag() throws Exception{
 		 
 	 	Search search = new Search();
 	 	search.setCurrentPage(1);
-	 	search.setPageSize(3);
-	 	Map<String,Object> map = claimService.listClaim(search);
+	 	search.setPageSize(5);
+	 	search.setSearchKeyword("»Ð»Ð");
+	 	Map<String,Object> map = hashTagService.listHashTag(search);
 	 	
 	 	List<Object> list = (List<Object>)map.get("list");
-	 	Assert.assertEquals(3, list.size());
+	 	Assert.assertEquals(4, list.size());
 	 	
 		//==> console È®ÀÎ
-	 	System.out.println(list);
-	 	
-	 	Integer totalCount = (Integer)map.get("totalCount");
-	 	System.out.println("product list all ÅäÅ»Ä«¿îµå : "+totalCount);
-	 	
-	 	System.out.println("=======================================");
-	 	
+	 	/*
 	 	search.setCurrentPage(1);
 	 	search.setPageSize(3);
 	 	search.setSearchCondition("0");
 	 	search.setSearchKeyword("");
 	 	search.setSearchFilter("1");
 	 	map = claimService.listClaim(search);
-	 	
-	 	list = (List<Object>)map.get("list");
-	 	Assert.assertEquals(3, list.size());
+	 	*/
 	 	
 	 	//==> console È®ÀÎ
 	 	System.out.println("product list all ¸®½ºÆ® : "+list);
 	 	
-	 	totalCount = (Integer)map.get("totalCount");
-	 	System.out.println("product list all 3°³ ´ç ¸®½ºÆ® °¹¼ö : "+totalCount);
 	 }
-	 */
+	 
 	 /*
 	//@Test
 		 public void testGetProductListByProductN0() throws Exception{
@@ -375,3 +278,4 @@ public class DietScServiceTest {
 	 	System.out.println(totalCount);
 	 }	 */
 	 
+}

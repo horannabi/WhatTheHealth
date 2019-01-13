@@ -26,19 +26,18 @@ public class ExScheduleDaoImpl implements ExScheduleDao {
 	///Method
 	@Override
 	public void addExSchedule(ExSchedule exSchedule) throws Exception {
-		// TODO Auto-generated method stub
+		sqlSession.insert("ExScMapper.addExSchedule", exSchedule);
 		
 	}
 
 	@Override
-	public void getSchedule(int exScNo) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public ExSchedule getExSchedule(int exScNo) throws Exception {
+		return sqlSession.selectOne("ExScMapper.getExSchedule", exScNo);		
 	}
 
 	@Override
 	public void updateExSchedule(ExSchedule exSchedule) throws Exception {
-		// TODO Auto-generated method stub
+		sqlSession.update("ExScMapper.updateExSchedule", exSchedule);
 		
 	}
 
@@ -56,8 +55,7 @@ public class ExScheduleDaoImpl implements ExScheduleDao {
 
 	@Override
 	public void deleteExSchedule(int exScNo) throws Exception {
-		// TODO Auto-generated method stub
-		
+		sqlSession.update("ExScMapper.deleteExSchedule", exScNo);		
 	}
 
 }

@@ -41,6 +41,12 @@ public class Food {
 	public void setDietScNo(int dietScNo) {
 		this.dietScNo = dietScNo;
 	}
+
+	@Override
+	public String toString() {
+		return "Food [foodName=" + foodName + ", foodCalorie=" + foodCalorie + ", amountFood=" + amountFood
+				+ ", dietScNo=" + dietScNo + "]";
+	}
 	
 	
 	
