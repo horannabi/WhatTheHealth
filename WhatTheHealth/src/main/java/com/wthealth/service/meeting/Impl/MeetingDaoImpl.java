@@ -32,8 +32,10 @@ public class MeetingDaoImpl implements MeetingDao {
 
 	///Method
 	@Override
-	public int addMeeting(Meeting meeting) throws Exception {
-		return sqlSession.insert("MeetingMapper.addMeeting", meeting);
+	public void addMeeting(Meeting meeting) throws Exception {
+		sqlSession.insert("MeetingMapper.addMeeting", meeting);
+		meeting.getPost().setPostNo("ME"+meeting.getMeetNo());
+		sqlSession.insert("MeetingMapper.addMeetingPost", meeting.getPost());
 	}
 	
 	
@@ -97,7 +99,7 @@ public class MeetingDaoImpl implements MeetingDao {
 	}
 
 	@Override
-	public Meeting getJoin(int joinNo)  throws Exception {
+	public Join getJoin(int joinNo)  throws Exception {
 		return sqlSession.selectOne("MeetingMapper.getJoin", joinNo);
 	}
 

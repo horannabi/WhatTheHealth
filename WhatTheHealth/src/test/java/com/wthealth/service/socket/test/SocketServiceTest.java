@@ -42,18 +42,18 @@ public class SocketServiceTest {
 		Socket socket = new Socket();
 		
 		socket.setBjId("user2");
-		socket.setLiveTitle("호란블리");
+		socket.setLiveTitle("차가운 란라니");
 		socket.setLiveType("0");
 
 		
 		socketService.addLiveStream(socket);
-		socket = socketService.getLiveStream(10002);
+		socket = socketService.getLiveStream(socket.getSocketNo());
 		//==> console 확인
 		System.out.println(socket);
 		
 		//==> API 확인
 		Assert.assertEquals("user2", socket.getBjId());
-		Assert.assertEquals("호란블리", socket.getLiveTitle());
+		Assert.assertEquals("차가운 란라니", socket.getLiveTitle());
 		Assert.assertEquals("0", socket.getLiveType());
 	}
 	
@@ -90,7 +90,7 @@ public class SocketServiceTest {
 	 	
 	 	Map<String,Object> map = socketService.listLiveStream(search);
 	 	List<Object> list = (List<Object>)map.get("list");
-	 	Assert.assertEquals(2, list.size());
+	 	Assert.assertEquals(3, list.size());
 	 	
 	 	//==> console 확인
 	 	System.out.println(list);
@@ -98,22 +98,22 @@ public class SocketServiceTest {
 	 	Integer totalCount = (Integer)map.get("totalCount");
 	 	System.out.println("product list all 토탈카운드 : "+totalCount);
 	 	
-	 	/*System.out.println("=======================================");
+	 	System.out.println("=======================================");
 	 	
 	 	search.setCurrentPage(1);
 	 	search.setPageSize(3);
-	 	search.setSearchCondition("0");
-	 	search.setSearchKeyword("");
+	 	search.setSearchCondition("1");
+	 	search.setSearchKeyword("호란블리");
 	 	map = socketService.listLiveStream(search);
 	 	
 	 	list = (List<Object>)map.get("list");
-	 	Assert.assertEquals(2, list.size());
+	 	Assert.assertEquals(3, list.size());
 	 	
 	 	//==> console 확인
 	 	System.out.println("product list all 리스트 : "+list);
 	 	
 	 	totalCount = (Integer)map.get("totalCount");
-	 	System.out.println("product list all 3개 당 리스트 갯수 : "+totalCount);*/
+	 	System.out.println("product list all 3개 당 리스트 갯수 : "+totalCount);
 	}
 	 
 }

@@ -32,17 +32,17 @@ public class MeetingServiceImpl implements MeetingService {
 
 	///Method
 	@Override
-	public int addMeeting(Meeting meeting) throws Exception {
+	public void addMeeting(Meeting meeting) throws Exception {
 		//int meetNo = meetingDao.addMeeting(meeting);
 		//meetingDao.addMeetingPost();
-		return meetingDao.addMeeting(meeting);
+		meetingDao.addMeeting(meeting);
 		//meetingDao.addMeeingPost(post);
 	}
 	
-	@Override
+	/*@Override
 	public void addMeetingPost(Post post) throws Exception {
 		meetingDao.addMeetingPost(post);	
-	}
+	}*/
 
 	/*@Override
 	public void updateMeeting(Meeting meeting) throws Exception {
@@ -101,7 +101,7 @@ public class MeetingServiceImpl implements MeetingService {
 	}
 
 	@Override
-	public Meeting getJoin(int joinNo)  throws Exception {
+	public Join getJoin(int joinNo)  throws Exception {
 		return meetingDao.getJoin(joinNo);
 	}
 

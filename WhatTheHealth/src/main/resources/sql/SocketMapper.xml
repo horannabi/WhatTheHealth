@@ -20,11 +20,15 @@
 	</resultMap>
 	
 	<!-- SQL : INSERT -->
-	<insert 	id="addLiveStream"		parameterType="com.wthealth.domain.Socket" >
+	<insert 	id="addLiveStream"		parameterType="com.wthealth.domain.Socket"  useGeneratedKeys="true" keyProperty="socketNo">
 	 	INSERT
 		INTO socket ( socket_no, bj_id, live_date, live_title, total_viewer, live_type, fir_player_id , sec_player_id, live_status) 
 		VALUES (seq_socket_socket_no.nextval, #{bjId}, SYSDATE, #{liveTitle}, 
 							#{totalViewer:NUMERIC}, #{liveType}, #{firPlayerId:VARCHAR}, #{secPlayerId:VARCHAR}, '1')
+	 	<selectKey resultType="int" keyProperty = "socketNo" order="AFTER">
+			SELECT seq_socket_socket_no.currval FROM dual
+		</selectKey>
+	 
 	 </insert>
 	 
 	 <!-- SQL : SELECT ONE -->
@@ -48,8 +52,17 @@
 	<select  id="listLiveStream"  parameterType="com.wthealth.common.Search"	resultMap="socketSelectMap">
 	  	SELECT *
 	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
-	  					FROM		(	SELECT socket_no, bj_id, live_title, total_viewer, live_type, fir_player_id, sec_player_id
+	  					FROM		(	SELECT socket_no, bj_id, live_title, total_viewer, live_type, fir_player_id, sec_player_id, live_status
 											FROM socket
+											<where>
+											 live_status = 1										
+												<if test = "searchCondition == 0 and searchKeyword !='' ">	<!-- 게시자 검색-->
+													and bj_id LIKE '%'||#{searchKeyword}||'%'
+												</if>			
+												<if test = "searchCondition == 1 and searchKeyword !='' ">	<!-- 제목 검색-->
+													and live_title LIKE '%'||#{searchKeyword}||'%'
+												</if>		
+											</where>	
 											ORDER BY live_date ) inner_table
 						WHERE ROWNUM &lt;= #{endRowNum} )
 		WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum} 
@@ -68,8 +81,18 @@
 	<!-- SQL : SELECT ROW Count -->	 
 	 <select  id="getTotalCount"  parameterType="com.wthealth.common.Search"	 resultType="int">
 	  	SELECT COUNT(*)
-	  	FROM(	SELECT socket_no, bj_id, live_title, total_viewer, live_type, fir_player_id, sec_player_id
-						FROM socket
+	  	FROM(	SELECT socket_no, bj_id, live_title, total_viewer, live_type, fir_player_id, sec_player_id, live_status
+											FROM socket
+											<where>
+											 live_status = 1										
+												<if test = "searchCondition == 0 and searchKeyword !='' ">	<!-- 게시자 검색-->
+													and bj_id LIKE '%'||#{searchKeyword}||'%'
+												</if>			
+												<if test = "searchCondition == 1 and searchKeyword !='' ">	<!-- 제목 검색-->
+													and live_title LIKE '%'||#{searchKeyword}||'%'
+												</if>		
+											</where>	
+											ORDER BY live_date 
 					 ) countTable						
 	 </select>
 	 

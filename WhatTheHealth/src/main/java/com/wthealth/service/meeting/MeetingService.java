@@ -10,10 +10,10 @@ import com.wthealth.domain.Post;
 
 public interface MeetingService {
 	//INSERT 소모임
-	public int addMeeting(Meeting meeting) throws Exception;
+	public void addMeeting(Meeting meeting) throws Exception;
 
 	//INSERT 소모임 to 게시물 table
-	public void addMeetingPost(Post post) throws Exception;
+	//public void addMeetingPost(Post post) throws Exception;
 		
 	//UPDATE 소모임
 	//public void updateMeeting(Meeting meeting) throws Exception;
@@ -40,7 +40,7 @@ public interface MeetingService {
 	public Map<String , Object> listJoinedMeeting(Search search, String partyId) throws Exception;
 		
 	//SELECT ONE 소모임참여 (소모임 알림)
-	public Meeting getJoin(int joinNo) throws Exception;
+	public Join getJoin(int joinNo) throws Exception;
 	
 	//선금 상태 변경
 	public void updateDeposit(int joinNo) throws Exception;

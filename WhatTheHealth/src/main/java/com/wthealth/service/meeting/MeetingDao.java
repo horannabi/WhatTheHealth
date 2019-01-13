@@ -10,7 +10,7 @@ import com.wthealth.domain.Post;
 
 public interface MeetingDao {
 	//INSERT 소모임
-	public int addMeeting(Meeting meeting) throws Exception;
+	public void addMeeting(Meeting meeting) throws Exception;
 	
 	//INSERT 소모임 to 게시물 table
 	//public void addMeeingPost(Post post) throws Exception;
@@ -47,7 +47,7 @@ public interface MeetingDao {
 	public int getTotalCountJoin(String partyId) throws Exception;
 	
 	//SELECT ONE 소모임참여(소모임 알림)
-	public Meeting getJoin(int joinNo) throws Exception;
+	public Join getJoin(int joinNo) throws Exception;
 	
 	//선금 상태 변경
 	public void updateDeposit(int joinNo) throws Exception;

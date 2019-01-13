@@ -40,17 +40,18 @@ public class ReplyServiceTest {
 		
 		Reply reply = new Reply();
 		
-		reply.setText("호란나비야");
+		reply.setText("추가가 되나요?");
 		reply.setPostNo("ME10000");
 		reply.setWriterId("user2");
 		
+		
 		replyService.addReply(reply);
-		reply = replyService.getReply(10008);
+		reply = replyService.getReply(reply.getReplyNo());
 		//==> console 확인
 		System.out.println(reply);
 		
 		//==> API 확인
-		Assert.assertEquals("호란나비야", reply.getText());
+		Assert.assertEquals("추가가 되나요?", reply.getText());
 		Assert.assertEquals("ME10000", reply.getPostNo());
 		Assert.assertEquals("user2", reply.getWriterId());
 	}
@@ -59,7 +60,7 @@ public class ReplyServiceTest {
 	public void testAddReReply() throws Exception {
 		Reply reply = new Reply();
 		
-		reply.setText("란라니야");
+		reply.setText("추가추가");
 		reply.setPostNo("ME10000");
 		reply.setWriterId("user1");
 		reply.setParentReplyNo(10001);
@@ -67,13 +68,13 @@ public class ReplyServiceTest {
 		
 		
 		replyService.addReReply(reply);
-		reply = replyService.getReply(10010);
+		reply = replyService.getReply(reply.getReplyNo());
 		
 		//==> console 확인
 		System.out.println(reply);
 				
 		//==> API 확인
-		Assert.assertEquals("란라니야", reply.getText());
+		Assert.assertEquals("추가추가", reply.getText());
 		Assert.assertEquals("ME10000", reply.getPostNo());
 		Assert.assertEquals("user1", reply.getWriterId());
 		Assert.assertEquals(10001, reply.getParentReplyNo());
@@ -154,7 +155,7 @@ public class ReplyServiceTest {
 	 	List<Object> list = (List<Object>)map.get("list");
 	 	//==> console 확인
 	 	System.out.println(list);
-	 	Assert.assertEquals(1, list.size());
+	 	Assert.assertEquals(2, list.size());
 	 	
 	 	
 	 	
